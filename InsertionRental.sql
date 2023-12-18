@@ -1,43 +1,43 @@
 USE Rental;
 
-INSERT INTO Customer (First_Name, Last_Name, Phone_Number, Email, Address)
-VALUES ('Adam', 'Smith', '506-868-001', 'a.smith@gmail.com', 'Main St. 12');
+INSERT INTO Customer (id, First_Name, Last_Name, Phone_Number, Email, Address)
+VALUES (1, 'Adam', 'Smith', '506-868-001', 'a.smith@gmail.com', 'Main St. 12');
 
-INSERT INTO Vehicle_Type (Type_Name)
-VALUES ('Van');
+INSERT INTO Vehicle_Type (id, Type_Name)
+VALUES (1, 'Van');
 
-INSERT INTO Vehicle (Vehicle_Type_id, Model, Registration_Number, Current_Kilomters, Status)
-VALUES (1, 'Volkswagen Sharan', 'SB18995', 75000, true);
+INSERT INTO Vehicle (id, Vehicle_Type_id, Model, Registration_Number, Current_Kilomters, Status)
+VALUES (1, 1, 'Volkswagen Sharan', 'SB18995', 75000, true);
 
-INSERT INTO Contract (Start_Contract, End_Contract, Salary)
-VALUES ('2024-01-01', '2027-12-31', 6500.00);
+INSERT INTO Contract (id, Start_Contract, End_Contract, Salary)
+VALUES (1, '2024-01-01', '2027-12-31', 6500.00);
 
-INSERT INTO Employee (First_Name, Last_Name, Position, Contract_id)
-VALUES ('Maria', 'Castile', 'Seller', 1);
+INSERT INTO Employee (id, First_Name, Last_Name, Position, Contract_id)
+VALUES (1, 'Maria', 'Castile', 'Seller', 1);
 
-INSERT INTO Status (Status)
-VALUES ('Active');
+INSERT INTO Status (id, Status)
+VALUES (1, 'Active');
 
-INSERT INTO Rental_Deal (Customer_id, Start_Rental, End_Rental, Total_Cost, Employee_id, Status_id)
-VALUES (1, '2024-02-01', '2024-02-15', 800.00, 1, 1);
+INSERT INTO Rental_Deal (id, Customer_id, Start_Rental, End_Rental, Total_Cost, Employee_id, Status_id)
+VALUES (1, 1, '2024-02-01', '2024-02-15', 800.00, 1, 1);
 
-INSERT INTO Remtal_deal_has_vehicle (Rental_Deal_id, Vehicle_id)
-VALUES (1, 1);
+INSERT INTO Rental_deal_has_vehicle (id, Rental_Deal_id, Vehicle_id)
+VALUES (1, 1, 1);
 
-INSERT INTO Maintenance (Vehicle_id, Maintenance_Date, Description, Cost)
-VALUES (1, '2023-02-10', 'Oil Change', 50.00);
+INSERT INTO Maintenance (id, Vehicle_id, Maintenance_Date, Description, Cost)
+VALUES (1, 1, '2023-02-10', 'Oil Change', 50.00);
 
-INSERT INTO Insurance_Company (Insurance_Name)
-VALUES ('Warta');
+INSERT INTO Insurance_Company (id, Insurance_Name)
+VALUES (1, 'Warta');
 
-INSERT INTO Insurance (Vehicle_id, Insurence_Company, PolicyNumber, Cost, Insurance_Company_id)
-VALUES (1, 'P01445684', 1200.00, 1);
+INSERT INTO Insurance (id, Vehicle_id, PolicyNumber, Cost, Insurance_Company_id)
+VALUES (1, 1, '1445684', 1200.00, 1);
 
-INSERT INTO Feedback (Rate, Description, Rental_Deal_id, Customer_id)
-VALUES (3, 'Not bad, not terrible', 1, 1);
+INSERT INTO Feedback (id, Rate, Description, Rental_Deal_id, Customer_id)
+VALUES (1, 3, 'Not bad, not terrible', 1, 1);
 
-INSERT INTO Payment (Amount, Payment_Date, Payment_Method, Rental_Deal_id)
-VALUES (1200, '2024-02-15', 'Blik', 1);
+INSERT INTO Payment (id, Amount, Payment_Date, Payment_Method, Rental_Deal_id)
+VALUES (1, 1200, '2024-02-15', 'Blik', 1);
 
-INSERT INTO Damage_Raport (Raport_Date, Description, Vehicle_id, Rental_Deal_id)
-VALUES ('2024-02-15', 'Scratch on the door', 1, 1);
+INSERT INTO Damage_Raport (id, Raport_Date, Description, Vehicle_id, Rental_Deal_id)
+VALUES (1, '2024-02-15', 'Scratch on the door', 1, 1);
