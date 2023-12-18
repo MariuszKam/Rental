@@ -27,3 +27,9 @@ WHERE id = 1;
 
 DELETE FROM Contract
 WHERE id = 1;
+
+DELETE FROM vehicle_type
+WHERE id = 1;
+
+DELETE FROM status
+WHERE id = 1;
