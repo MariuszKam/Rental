@@ -6,7 +6,7 @@ VALUES (1, 'Adam', 'Smith', '506-868-001', 'a.smith@gmail.com', 'Main St. 12');
 INSERT INTO Vehicle_Type (id, Type_Name)
 VALUES (1, 'Van');
 
-INSERT INTO Vehicle (id, Vehicle_Type_id, Model, Registration_Number, Current_Kilomters, Status)
+INSERT INTO Vehicle (id, Vehicle_Type_id, Model, Registration_Number, Current_Kilometers, Status)
 VALUES (1, 1, 'Volkswagen Sharan', 'SB18995', 75000, true);
 
 INSERT INTO Contract (id, Start_Contract, End_Contract, Salary)
