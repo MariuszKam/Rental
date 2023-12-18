@@ -1,3 +1,6 @@
+DELETE FROM Rental_Deal
+WHERE id = 1;
+
 DELETE FROM Customer
 WHERE id = 1;
 
@@ -5,9 +8,6 @@ DELETE FROM Vehicle
 WHERE id = 1;
 
 DELETE FROM Employee
-WHERE id = 1;
-
-DELETE FROM Rental_Deal
 WHERE id = 1;
 
 DELETE FROM Maintenance

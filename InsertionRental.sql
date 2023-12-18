@@ -1,3 +1,5 @@
+USE Rental;
+
 INSERT INTO Customer (First_Name, Last_Name, Phone_Number, Email, Address)
 VALUES ('Adam', 'Smith', '506-868-001', 'a.smith@gmail.com', 'Main St. 12');
 
@@ -19,7 +21,7 @@ VALUES ('Active');
 INSERT INTO Rental_Deal (Customer_id, Start_Rental, End_Rental, Total_Cost, Employee_id, Status_id)
 VALUES (1, '2024-02-01', '2024-02-15', 800.00, 1, 1);
 
-INSERT INTO Vehicle_has_Rental_Deal (Vehicle_id, Rental_Deal_id)
+INSERT INTO Remtal_deal_has_vehicle (Rental_Deal_id, Vehicle_id)
 VALUES (1, 1);
 
 INSERT INTO Maintenance (Vehicle_id, Maintenance_Date, Description, Cost)
