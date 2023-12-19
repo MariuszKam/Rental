@@ -72,6 +72,27 @@ LEFT JOIN Maintenance ON Vehicle.id = Maintenance.Vehicle_id
 GROUP BY Vehicle.id
 HAVING Total_Maintenance_Cost > 20;
 
+/*Shows number of contracts customer made with company and sum it above 2 contracts*/
+SELECT Customer_id, COUNT(Rental_Deal.Customer_id) AS Rental_Deal_Total, SUM(Payment.Amount) AS Total_Payment_Amount
+FROM Rental_Deal
+LEFT JOIN Payment ON Rental_Deal.id = Payment.Rental_Deal_id
+GROUP BY Customer_id
+HAVING COUNT(Rental_Deal.Customer_id) > 2;
+
+/*Shows employees that made more than 5 deals*/
+SELECT Employee.id, Employee.First_Name, Employee.Last_Name, COUNT(Rental_Deal.Employee_id) as Rental_Deals_Total
+FROM Employee
+RIGHT JOIN Rental_Deal ON Employee.id = Rental_Deal.Employee_id
+GROUP BY Employee_id
+HAVING Rental_Deals_Total > 5;
+
+/*Shows sum and number of maintenances done by Vehicle above 2 maintences already done*/
+SELECT Vehicle.id, COUNT(Maintenance.Vehicle_id) as Maintence_Total, Vehicle.Registration_Number, SUM(Maintenance.Cost) AS Total_Maintenance_Cost
+FROM Vehicle
+LEFT JOIN Maintenance ON Vehicle.id = Maintenance.Vehicle_id
+GROUP BY Vehicle.id
+HAVING Maintence_Total > 2;
+
 
 
 
