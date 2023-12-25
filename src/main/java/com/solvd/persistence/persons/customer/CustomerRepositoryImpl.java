@@ -9,12 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class CustomerRepositoryImpl implements CustomerRepository{
+public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public void create(Customer customer) {
         Connection connection = ConnectionPool.get();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO rental.customer (First_Name, Last_Name, Phone_Number, Email, Address) " +
                         "VALUES (?, ?, ?, ?, ?)")) {
             preparedStatement.setString(1, customer.getFirstName());
@@ -34,7 +34,7 @@ public class CustomerRepositoryImpl implements CustomerRepository{
     @Override
     public Optional<Customer> findById(Long id) {
         Connection connection = ConnectionPool.get();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "SELECT * FROM rental.customer WHERE id = ?"
         )) {
             preparedStatement.setLong(1, id);

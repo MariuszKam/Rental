@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Contract {
-    private long id;
+    private Long id;
     private LocalDateTime startContract;
     private LocalDateTime endContract;
     private BigDecimal salary;
 
-    public Contract(long id, LocalDateTime startContract, LocalDateTime endContract, BigDecimal salary) {
+    public Contract(Long id, LocalDateTime startContract, LocalDateTime endContract, BigDecimal salary) {
         this.id = id;
         this.startContract = startContract;
         this.endContract = endContract;
@@ -21,7 +21,7 @@ public class Contract {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -54,11 +54,21 @@ public class Contract {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return id == contract.id && Objects.equals(startContract, contract.startContract) && Objects.equals(endContract, contract.endContract) && Objects.equals(salary, contract.salary);
+        return Objects.equals(id, contract.id) && Objects.equals(startContract, contract.startContract) && Objects.equals(endContract, contract.endContract) && Objects.equals(salary, contract.salary);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(id, startContract, endContract, salary);
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", startContract=" + startContract +
+                ", endContract=" + endContract +
+                ", salary=" + salary +
+                '}';
     }
 }
