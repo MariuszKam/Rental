@@ -2,10 +2,13 @@ package com.solvd;
 
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.model.persons.employee.Contract;
+import com.solvd.model.persons.employee.Employee;
 import com.solvd.service.persons.customer.CustomerService;
 import com.solvd.service.persons.customer.CustomerServiceImpl;
 import com.solvd.service.persons.employee.ContractService;
 import com.solvd.service.persons.employee.ContractServiceImpl;
+import com.solvd.service.persons.employee.EmployeeService;
+import com.solvd.service.persons.employee.EmployeeServiceImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,5 +28,12 @@ public class Main {
         ContractService contractService = new ContractServiceImpl();
         System.out.println(contractService.create(contract));
         System.out.println(contractService.loadContractById(1L));
+        System.out.println("Add employee");
+        Contract getContract = contractService.loadContractById(1L);
+        Employee employee = new Employee(39L, "Sam", "Wrecked", "Seller", getContract);
+        EmployeeService employeeService = new EmployeeServiceImpl();
+        System.out.println(employeeService.create(employee));
+        System.out.println(employeeService.loadEmployeeById(1L));
+
     }
 }
