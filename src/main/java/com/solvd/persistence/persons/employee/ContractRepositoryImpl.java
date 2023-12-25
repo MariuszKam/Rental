@@ -15,12 +15,13 @@ public class ContractRepositoryImpl implements ContractRepository {
     @Override
     public void create(Contract contract) {
         Connection connection = ConnectionPool.get();
-        try(PreparedStatement preparedStatement = connection.prepareStatement(
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
                 "INSERT INTO rental.contract (Start_Contract, End_Contract, Salary) VALUES (?, ?, ?)"
         )) {
             preparedStatement.setObject(1, contract.getStartContract());
             preparedStatement.setObject(2, contract.getEndContract());
             preparedStatement.setBigDecimal(3, contract.getSalary());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create contract", e);
         } finally {

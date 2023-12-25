@@ -5,6 +5,7 @@ import com.solvd.model.persons.employee.Contract;
 import java.util.Optional;
 
 public interface ContractService {
-    Contract contract(Contract contract);
+    Contract create(Contract contract);
+
     Contract loadContractById(Long id);
 }

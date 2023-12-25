@@ -10,7 +10,7 @@ public class ContractServiceImpl implements ContractService {
     private final ContractRepository contractRepository = new ContractRepositoryImpl();
 
     @Override
-    public Contract contract(Contract contract) {
+    public Contract create(Contract contract) {
         contract.setId(null);
         contractRepository.create(contract);
         return contract;
