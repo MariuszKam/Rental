@@ -8,7 +8,7 @@ public class Employee extends Person {
     private String position;
     private Contract contract;
 
-    public Employee(long id, String firstName, String lastName, String position, Contract contract) {
+    public Employee(Long id, String firstName, String lastName, String position, Contract contract) {
         super(id, firstName, lastName);
         this.position = position;
         this.contract = contract;

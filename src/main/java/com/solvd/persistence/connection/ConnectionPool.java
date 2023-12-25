@@ -1,4 +1,4 @@
-package com.solvd.persistence;
+package com.solvd.persistence.connection;
 
 
 import java.lang.reflect.Proxy;
@@ -70,6 +70,10 @@ public class ConnectionPool {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void releaseConnection(Connection connection) {
+        pool.offer(connection);
     }
 
     public static void closeConnectionPool() {

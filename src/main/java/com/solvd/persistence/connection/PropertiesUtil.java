@@ -1,4 +1,4 @@
-package com.solvd.persistence;
+package com.solvd.persistence.connection;
 
 import java.io.IOException;
 import java.io.InputStream;

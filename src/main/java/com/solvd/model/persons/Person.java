@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public abstract class Person {
 
-    protected long id;
+    protected Long id;
     protected String firstName;
     protected String lastName;
 
@@ -26,7 +26,7 @@ public abstract class Person {
         return lastName;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -43,7 +43,7 @@ public abstract class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
+        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
     }
 
     @Override
