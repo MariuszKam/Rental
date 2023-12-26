@@ -3,12 +3,18 @@ package com.solvd;
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.model.persons.employee.Contract;
 import com.solvd.model.persons.employee.Employee;
+import com.solvd.model.vehicle.Vehicle;
+import com.solvd.model.vehicle.VehicleType;
 import com.solvd.service.persons.customer.CustomerService;
 import com.solvd.service.persons.customer.CustomerServiceImpl;
 import com.solvd.service.persons.employee.ContractService;
 import com.solvd.service.persons.employee.ContractServiceImpl;
 import com.solvd.service.persons.employee.EmployeeService;
 import com.solvd.service.persons.employee.EmployeeServiceImpl;
+import com.solvd.service.vehicle.VehicleService;
+import com.solvd.service.vehicle.VehicleServiceImpl;
+import com.solvd.service.vehicle.VehicleTypeService;
+import com.solvd.service.vehicle.VehicleTypeServiceImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -21,19 +27,27 @@ public class Main {
 //        System.out.println(customerService.create(customerNew));
 //        Customer customer = customerService.loadCustomerById(1L);
 //        System.out.println(customer);
-        System.out.println("Add contract");
-        Contract contract = new Contract(20L,
-                LocalDateTime.of(2023, 2, 23, 0, 0),
-                LocalDateTime.of(2026, 2, 24, 0, 0), new BigDecimal("2450.90"));
-        ContractService contractService = new ContractServiceImpl();
-        System.out.println(contractService.create(contract));
-        System.out.println(contractService.loadContractById(1L));
-        System.out.println("Add employee");
-        Contract getContract = contractService.loadContractById(1L);
-        Employee employee = new Employee(39L, "Sam", "Wrecked", "Seller", getContract);
-        EmployeeService employeeService = new EmployeeServiceImpl();
-        System.out.println(employeeService.create(employee));
-        System.out.println(employeeService.loadEmployeeById(1L));
+//        System.out.println("Add contract");
+//        Contract contract = new Contract(20L,
+//                LocalDateTime.of(2023, 2, 23, 0, 0),
+//                LocalDateTime.of(2026, 2, 24, 0, 0), new BigDecimal("2450.90"));
+//        ContractService contractService = new ContractServiceImpl();
+//        System.out.println(contractService.create(contract));
+//        System.out.println(contractService.loadContractById(1L));
+//        System.out.println("Add employee");
+//        Contract getContract = contractService.loadContractById(1L);
+//        Employee employee = new Employee(39L, "Sam", "Wrecked", "Seller", getContract);
+//        EmployeeService employeeService = new EmployeeServiceImpl();
+//        System.out.println(employeeService.create(employee));
+//        System.out.println(employeeService.loadEmployeeById(1L));
+        System.out.println("Test vehicle");
+        VehicleType vehicleType = new VehicleType(20L, "Van");
+        VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
+//        System.out.println(vehicleTypeService.create(vehicleType));
+        vehicleType = vehicleTypeService.loadVehicleTypeById(1l);
+        Vehicle vehicle = new Vehicle(30L, vehicleType, "Mercedes", "ZS8990", 8904837L, true);
+        VehicleService vehicleService = new VehicleServiceImpl();
+        System.out.println(vehicleService.create(vehicle));
 
     }
 }

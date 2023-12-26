@@ -41,7 +41,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Contract contract = contractRepository.findById(resultSet.getLong(5)).get();
+                    Contract contract = contractRepository.findById(resultSet.getLong(5))
+                            .orElseThrow(() -> new RuntimeException("Contract not found"));
 
                     return Optional.of(new Employee(
                             resultSet.getLong("id"),
