@@ -69,6 +69,5 @@ public class Main {
 //        insurance = insuranceService.loadInsuranceById(1l);
 //        System.out.println(insurance);
 
-
     }
 }
