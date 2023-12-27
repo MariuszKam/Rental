@@ -5,6 +5,7 @@ import com.solvd.model.persons.employee.Contract;
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.model.vehicle.VehicleType;
+import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.service.persons.customer.CustomerService;
 import com.solvd.service.persons.customer.CustomerServiceImpl;
 import com.solvd.service.persons.employee.ContractService;
@@ -15,6 +16,8 @@ import com.solvd.service.vehicle.VehicleService;
 import com.solvd.service.vehicle.VehicleServiceImpl;
 import com.solvd.service.vehicle.VehicleTypeService;
 import com.solvd.service.vehicle.VehicleTypeServiceImpl;
+import com.solvd.service.vehicle.maintenance.MaintenanceService;
+import com.solvd.service.vehicle.maintenance.MaintenanceServiceImpl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -40,14 +43,19 @@ public class Main {
 //        EmployeeService employeeService = new EmployeeServiceImpl();
 //        System.out.println(employeeService.create(employee));
 //        System.out.println(employeeService.loadEmployeeById(1L));
-        System.out.println("Test vehicle");
-        VehicleType vehicleType = new VehicleType(20L, "Van");
-        VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
+//        System.out.println("Test vehicle");
+//        VehicleType vehicleType = new VehicleType(20L, "Van");
+//        VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
 //        System.out.println(vehicleTypeService.create(vehicleType));
-        vehicleType = vehicleTypeService.loadVehicleTypeById(1l);
-        Vehicle vehicle = new Vehicle(30L, vehicleType, "Mercedes", "ZS8990", 8904837L, true);
+//        vehicleType = vehicleTypeService.loadVehicleTypeById(1l);
+//        Vehicle vehicle = new Vehicle(30L, vehicleType, "Mercedes", "ZS8990", 8904837L, true);
         VehicleService vehicleService = new VehicleServiceImpl();
-        System.out.println(vehicleService.create(vehicle));
+//        System.out.println(vehicleService.create(vehicle));
+        System.out.println("Maintenance test");
+        Vehicle vehicle = vehicleService.loadVehicleById(1L);
+        Maintenance maintenance = new Maintenance(1L, vehicle, LocalDateTime.of(2023, 6, 16, 12, 30), "Oil change", new BigDecimal("50.00"));
+        MaintenanceService maintenanceService = new MaintenanceServiceImpl();
+        System.out.println(maintenanceService.create(maintenance));
 
     }
 }

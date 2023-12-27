@@ -45,10 +45,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                             .orElseThrow(() -> new RuntimeException("Contract not found"));
 
                     return Optional.of(new Employee(
-                            resultSet.getLong("id"),
-                            resultSet.getString("First_Name"),
-                            resultSet.getString("Last_Name"),
-                            resultSet.getString("Position"),
+                            resultSet.getLong(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
                             contract
                     ));
                 }
