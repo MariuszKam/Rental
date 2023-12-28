@@ -16,14 +16,19 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     public void create(Employee employee) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.employee (First_Name, Last_Name, Position, Contract_id) VALUES (?, ?, ?, ?)"
+                "INSERT INTO rental.employee (First_Name, Last_Name, Position, Contract_id) VALUES (?, ?, ?, ?)",
+                PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setString(1, employee.getFirstName());
             preparedStatement.setString(2, employee.getLastName());
             preparedStatement.setString(3, employee.getPosition());
             preparedStatement.setLong(4, employee.getContract().getId());
-
             preparedStatement.executeUpdate();
+            try (ResultSet key = preparedStatement.getGeneratedKeys()) {
+                if (key.next()) {
+                    employee.setId(key.getLong(1));
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create employee", e);
         } finally {
