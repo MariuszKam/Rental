@@ -8,4 +8,6 @@ public interface ContractService {
     Contract create(Contract contract);
 
     Contract loadContractById(Long id);
+
+    Contract loadContractByEmployeeId(Long id);
 }

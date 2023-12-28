@@ -1,5 +1,6 @@
 package com.solvd.service.persons.employee;
 
+import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.persons.employee.ContractRepositoryImpl;
@@ -18,6 +19,13 @@ public class ContractServiceImpl implements ContractService {
 
     @Override
     public Contract loadContractById(Long id) {
-        return contractRepository.findById(id).orElseThrow(() -> new RuntimeException("Contract not found"));
+        return contractRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Contract"));
     }
+
+    @Override
+    public Contract loadContractByEmployeeId(Long id) {
+        return contractRepository.findByEmployeeId(id).orElseThrow(() -> new ItemNotFoundException("Contract"));
+    }
+
+
 }

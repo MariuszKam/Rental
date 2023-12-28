@@ -5,7 +5,7 @@ import com.solvd.model.vehicle.maintenance.Insurance;
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.vehicle.VehicleRepository;
-import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
+//import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class InsuranceRepositoryImpl implements InsuranceRepository {
     private final InsuranceCompanyRepository insuranceCompanyRepository = new InsuranceCompanyRepositoryImpl();
-    private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
+    //private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
 
     @Override
     public void create(Insurance insurance) {
@@ -47,12 +47,12 @@ public class InsuranceRepositoryImpl implements InsuranceRepository {
                 if (resultSet.next()) {
                     InsuranceCompany insuranceCompany = insuranceCompanyRepository.findById(resultSet.getLong(5))
                             .orElseThrow(() -> new RuntimeException("Insurance company not found"));
-                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(2))
-                            .orElseThrow(() -> new RuntimeException("Insurance company not found"));
+//                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(2))
+//                            .orElseThrow(() -> new RuntimeException("Insurance company not found"));
 
                     return Optional.of(new Insurance(
                             resultSet.getLong(1),
-                            vehicle,
+                            null,
                             resultSet.getInt(3),
                             resultSet.getBigDecimal(4),
                             insuranceCompany

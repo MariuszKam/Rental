@@ -5,7 +5,7 @@ import com.solvd.model.deal.RentalDealHasVehicle;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.vehicle.VehicleRepository;
-import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
+//import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class RentalDealHasVehicleRepositoryImpl implements RentalDealHasVehicleRepository {
-    private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
+    //private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
     private final RentalDealRepository rentalDealRepository = new RentalDealRepositoryImpl();
 
     @Override
@@ -46,13 +46,13 @@ public class RentalDealHasVehicleRepositoryImpl implements RentalDealHasVehicleR
                     RentalDeal rentalDeal = rentalDealRepository.findById(resultSet.getLong(2))
                             .orElseThrow(() -> new RuntimeException("RentalDeal not found"));
 
-                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(3))
-                            .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+//                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(3))
+//                            .orElseThrow(() -> new RuntimeException("Vehicle not found"));
 
                     return Optional.of(new RentalDealHasVehicle(
                             resultSet.getLong(1),
                             rentalDeal,
-                            vehicle
+                            null
                     ));
                 }
             }

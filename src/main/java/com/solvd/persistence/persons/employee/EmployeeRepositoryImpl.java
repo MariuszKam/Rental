@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository {
-    private final ContractRepository contractRepository = new ContractRepositoryImpl();
 
     @Override
     public void create(Employee employee) {
@@ -41,15 +40,12 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Contract contract = contractRepository.findById(resultSet.getLong(5))
-                            .orElseThrow(() -> new RuntimeException("Contract not found"));
-
                     return Optional.of(new Employee(
                             resultSet.getLong(1),
                             resultSet.getString(2),
                             resultSet.getString(3),
                             resultSet.getString(4),
-                            contract
+                            null
                     ));
                 }
             }

@@ -4,7 +4,7 @@ import com.solvd.model.vehicle.Vehicle;
 import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.vehicle.VehicleRepository;
-import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
+//import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class MaintenanceRepositoryImpl implements MaintenanceRepository {
-    private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
+    //private final VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
 
     @Override
     public void create(Maintenance maintenance) {
@@ -43,12 +43,12 @@ public class MaintenanceRepositoryImpl implements MaintenanceRepository {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(2))
-                            .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+//                    Vehicle vehicle = vehicleRepository.findById(resultSet.getLong(2))
+//                            .orElseThrow(() -> new RuntimeException("Vehicle not found"));
 
                     return Optional.of(new Maintenance(
                             resultSet.getLong(1),
-                            vehicle,
+                            null,
                             resultSet.getTimestamp(3).toLocalDateTime(),
                             resultSet.getString(4),
                             resultSet.getBigDecimal(5)

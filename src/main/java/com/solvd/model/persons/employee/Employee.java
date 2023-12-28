@@ -43,4 +43,15 @@ public class Employee extends Person {
     public int hashCode() {
         return Objects.hash(super.hashCode(), position, contract);
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                " position='" + position + '\'' +
+                ", contract=" + contract +
+                '}';
+    }
 }
