@@ -3,6 +3,7 @@ package com.solvd.persistence.persons.employee;
 import com.solvd.model.persons.employee.Contract;
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,11 +25,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             preparedStatement.setString(3, employee.getPosition());
             preparedStatement.setLong(4, employee.getContract().getId());
             preparedStatement.executeUpdate();
-            try (ResultSet key = preparedStatement.getGeneratedKeys()) {
-                if (key.next()) {
-                    employee.setId(key.getLong(1));
-                }
-            }
+            RepositoryUtility.setIdFromDatabase(employee, preparedStatement, Employee::setId);
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create employee", e);
         } finally {

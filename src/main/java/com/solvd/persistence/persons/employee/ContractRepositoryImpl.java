@@ -4,6 +4,7 @@ import com.solvd.model.persons.customer.Customer;
 import com.solvd.model.persons.employee.Contract;
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,11 +25,7 @@ public class ContractRepositoryImpl implements ContractRepository {
             preparedStatement.setObject(2, contract.getEndContract());
             preparedStatement.setBigDecimal(3, contract.getSalary());
             preparedStatement.executeUpdate();
-            try (ResultSet key = preparedStatement.getGeneratedKeys()) {
-                if (key.next()) {
-                    contract.setId(key.getLong(1));
-                }
-            }
+            RepositoryUtility.setIdFromDatabase(contract, preparedStatement, Contract::setId);
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create contract", e);
         } finally {
