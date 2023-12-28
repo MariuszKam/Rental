@@ -7,5 +7,5 @@ public interface VehicleService {
 
     Vehicle loadVehicleById(Long id);
 
-    Vehicle loadVehicleByTableAndID(String table, Long id);
+    Vehicle loadVehicleByTableAndId(String table, Long id);
 }

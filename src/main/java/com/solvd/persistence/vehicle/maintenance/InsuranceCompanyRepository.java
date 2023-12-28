@@ -8,4 +8,6 @@ public interface InsuranceCompanyRepository {
     void create(InsuranceCompany insuranceCompany);
 
     Optional<InsuranceCompany> findById(Long id);
+
+    Optional<InsuranceCompany> findByInsuranceId(Long id);
 }

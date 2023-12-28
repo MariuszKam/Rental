@@ -7,10 +7,10 @@ import java.util.Objects;
 
 public class Insurance {
     private Long id;
-    private final Vehicle vehicle;
+    private Vehicle vehicle;
     private final Integer policyNumber;
     private final BigDecimal cost;
-    private final InsuranceCompany insuranceCompany;
+    private InsuranceCompany insuranceCompany;
 
     public Insurance(Long id, Vehicle vehicle, Integer policyNumber, BigDecimal cost, InsuranceCompany insuranceCompany) {
         this.id = id;
@@ -32,6 +32,10 @@ public class Insurance {
         return vehicle;
     }
 
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
     public Integer getPolicyNumber() {
         return policyNumber;
     }
@@ -42,6 +46,10 @@ public class Insurance {
 
     public InsuranceCompany getInsuranceCompany() {
         return insuranceCompany;
+    }
+
+    public void setInsuranceCompany(InsuranceCompany insuranceCompany) {
+        this.insuranceCompany = insuranceCompany;
     }
 
     @Override

@@ -6,4 +6,6 @@ public interface InsuranceCompanyService {
     InsuranceCompany create(InsuranceCompany insuranceCompany);
 
     InsuranceCompany loadInsuranceCompanyById(Long id);
+
+    InsuranceCompany loadInsuranceCompanyByInsuranceId(Long id);
 }

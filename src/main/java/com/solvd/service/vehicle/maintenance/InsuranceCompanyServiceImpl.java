@@ -1,10 +1,9 @@
 package com.solvd.service.vehicle.maintenance;
 
+import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepository;
 import com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepositoryImpl;
-
-import java.util.Optional;
 
 public class InsuranceCompanyServiceImpl implements InsuranceCompanyService {
     InsuranceCompanyRepository insuranceCompanyRepository = new InsuranceCompanyRepositoryImpl();
@@ -18,6 +17,11 @@ public class InsuranceCompanyServiceImpl implements InsuranceCompanyService {
 
     @Override
     public InsuranceCompany loadInsuranceCompanyById(Long id) {
-        return insuranceCompanyRepository.findById(id).orElseThrow(() -> new RuntimeException("Insurance Company not found"));
+        return insuranceCompanyRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Insurance Company"));
+    }
+
+    @Override
+    public InsuranceCompany loadInsuranceCompanyByInsuranceId(Long id) {
+        return insuranceCompanyRepository.findByInsuranceId(id).orElseThrow(() -> new ItemNotFoundException("Insurance Company"));
     }
 }

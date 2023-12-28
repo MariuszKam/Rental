@@ -27,7 +27,7 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public Vehicle loadVehicleByTableAndID(String table, Long id) {
+    public Vehicle loadVehicleByTableAndId(String table, Long id) {
         Vehicle vehicle = vehicleRepository.findByRelatedTableId(table, id).orElseThrow(() -> new ItemNotFoundException("Vehicle"));
         vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(id));
         return vehicle;

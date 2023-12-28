@@ -21,7 +21,7 @@ public class MaintenanceServiceImpl implements MaintenanceService {
     @Override
     public Maintenance loadMaintenanceById(Long id) {
         Maintenance maintenance = maintenanceRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Maintenance"));
-        maintenance.setVehicle(vehicleService.loadVehicleByTableAndID("maintenance", id));
+        maintenance.setVehicle(vehicleService.loadVehicleByTableAndId("maintenance", id));
         return maintenance;
     }
 }
