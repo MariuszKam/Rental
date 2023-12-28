@@ -1,21 +1,29 @@
 package com.solvd.service.vehicle;
 
+import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.vehicle.VehicleRepository;
-//import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
+import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 public class VehicleServiceImpl implements VehicleService {
-    //VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
+    VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
+    VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
 
     @Override
     public Vehicle create(Vehicle vehicle) {
         vehicle.setId(null);
-        //vehicleRepository.create(vehicle);
+        if (vehicle.getVehicleType() != null) {
+            vehicleTypeService.create(vehicle.getVehicleType());
+        }
+        System.out.println(vehicle);
+        vehicleRepository.create(vehicle);
         return vehicle;
     }
 
     @Override
     public Vehicle loadVehicleById(Long id) {
-        return null; //vehicleRepository.findById(id).orElseThrow(() -> new RuntimeException("Vehicle not found"));
+        Vehicle vehicle = vehicleRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Vehicle"));
+        vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(id));
+        return vehicle;
     }
 }

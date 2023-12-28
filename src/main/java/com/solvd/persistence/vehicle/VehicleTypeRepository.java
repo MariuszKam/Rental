@@ -8,4 +8,6 @@ public interface VehicleTypeRepository {
     void create(VehicleType vehicleType);
 
     Optional<VehicleType> findById(Long id);
+
+    Optional<VehicleType> findByVehicleId(Long id);
 }

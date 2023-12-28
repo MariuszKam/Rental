@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Vehicle {
     private Long id;
-    private final VehicleType vehicleType;
+    private VehicleType vehicleType;
     private final String model;
     private final String registrationNumber;
     private Long currentKilometers;
@@ -32,6 +32,10 @@ public class Vehicle {
 
     public VehicleType getVehicleType() {
         return vehicleType;
+    }
+
+    public void setVehicleType(VehicleType vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public String getModel() {
