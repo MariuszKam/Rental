@@ -15,7 +15,6 @@ public class VehicleServiceImpl implements VehicleService {
         if (vehicle.getVehicleType() != null) {
             vehicleTypeService.create(vehicle.getVehicleType());
         }
-        System.out.println(vehicle);
         vehicleRepository.create(vehicle);
         return vehicle;
     }
@@ -23,6 +22,13 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle loadVehicleById(Long id) {
         Vehicle vehicle = vehicleRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Vehicle"));
+        vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(id));
+        return vehicle;
+    }
+
+    @Override
+    public Vehicle loadVehicleByTableAndID(String table, Long id) {
+        Vehicle vehicle = vehicleRepository.findByRelatedTableId(table, id).orElseThrow(() -> new ItemNotFoundException("Vehicle"));
         vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(id));
         return vehicle;
     }

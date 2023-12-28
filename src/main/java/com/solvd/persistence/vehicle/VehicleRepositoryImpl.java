@@ -61,4 +61,31 @@ public class VehicleRepositoryImpl implements VehicleRepository {
         }
         return Optional.empty();
     }
+
+    @Override
+    public Optional<Vehicle> findByRelatedTableId(String table, Long id) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.vehicle WHERE id IN (SELECT Vehicle_id FROM rental." + table + " WHERE id = ?)"
+        )) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new Vehicle(
+                            resultSet.getLong(1),
+                            null,
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getLong(5),
+                            resultSet.getBoolean(6)
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Vehicle not found", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return Optional.empty();
+    }
 }

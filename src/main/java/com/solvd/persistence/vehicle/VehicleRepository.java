@@ -8,4 +8,6 @@ public interface VehicleRepository {
     void create(Vehicle vehicle);
 
     Optional<Vehicle> findById(Long id);
+
+    Optional<Vehicle> findByRelatedTableId(String table, Long id);
 }

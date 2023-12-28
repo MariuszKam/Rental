@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Maintenance {
     private Long id;
-    private final Vehicle vehicle;
+    private Vehicle vehicle;
     private final LocalDateTime date;
     private final String description;
     private final BigDecimal cost;
@@ -31,6 +31,10 @@ public class Maintenance {
 
     public Vehicle getVehicle() {
         return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     public LocalDateTime getDate() {

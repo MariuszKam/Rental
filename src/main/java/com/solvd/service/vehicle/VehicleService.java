@@ -6,4 +6,6 @@ public interface VehicleService {
     Vehicle create(Vehicle vehicle);
 
     Vehicle loadVehicleById(Long id);
+
+    Vehicle loadVehicleByTableAndID(String table, Long id);
 }
