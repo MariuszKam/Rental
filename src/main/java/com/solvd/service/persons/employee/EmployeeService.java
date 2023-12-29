@@ -6,4 +6,6 @@ public interface EmployeeService {
     Employee create(Employee employee);
 
     Employee loadEmployeeById(Long id);
+
+    Employee loadEmployeeByRentalDealId(Long id);
 }

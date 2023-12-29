@@ -1,6 +1,6 @@
 package com.solvd.persistence.persons.employee;
 
-import com.solvd.model.persons.employee.Contract;
+
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
@@ -40,6 +40,32 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 "SELECT * FROM rental.employee WHERE id = ?"
         )) {
             preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new Employee(
+                            resultSet.getLong(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            null
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Employee not found", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Employee> findByRentalDealId(Long rentalDealId) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.employee WHERE id IN (SELECT Employee_id FROM rental.rental_deal WHERE id = ?)"
+        )) {
+            preparedStatement.setLong(1, rentalDealId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return Optional.of(new Employee(
