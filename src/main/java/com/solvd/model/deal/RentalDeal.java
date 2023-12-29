@@ -7,6 +7,7 @@ import com.solvd.model.vehicle.Vehicle;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 public class RentalDeal {
     private Long id;
@@ -15,7 +16,7 @@ public class RentalDeal {
     private final LocalDateTime endRental;
     private final BigDecimal totalCost;
     private Employee employee;
-    private final Status status;
+    private Status status;
     private List<Vehicle> vehicles;
 
     public RentalDeal(Long id, Customer customer, LocalDateTime startRental, LocalDateTime endRental, BigDecimal totalCost, Employee employee, Status status, List<Vehicle> vehicles) {
@@ -41,6 +42,10 @@ public class RentalDeal {
         return customer;
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public LocalDateTime getStartRental() {
         return startRental;
     }
@@ -57,14 +62,38 @@ public class RentalDeal {
         return employee;
     }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     public Status getStatus() {
         return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
 
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RentalDeal that = (RentalDeal) o;
+        return Objects.equals(id, that.id) && Objects.equals(customer, that.customer) && Objects.equals(startRental, that.startRental) && Objects.equals(endRental, that.endRental) && Objects.equals(totalCost, that.totalCost) && Objects.equals(employee, that.employee) && Objects.equals(status, that.status) && Objects.equals(vehicles, that.vehicles);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, customer, startRental, endRental, totalCost, employee, status, vehicles);
+    }
 
     @Override
     public String toString() {

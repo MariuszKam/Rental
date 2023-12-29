@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class VehicleRepositoryImpl implements VehicleRepository {
@@ -87,5 +89,39 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             ConnectionPool.releaseConnection(connection);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<Vehicle> findAllByRentalDealId(Long rentalDealId) {
+        List<Vehicle> vehicles = new ArrayList<>();
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT v.* " +
+                        "FROM rental.vehicle v " +
+                        "JOIN rental.rental_deal_has_vehicle rv ON v.id = rv.Vehicle_id " +
+                        "WHERE rv.Rental_Deal_id = ?"
+        )) {
+            preparedStatement.setLong(1, rentalDealId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Vehicle vehicle = new Vehicle(
+                            resultSet.getLong(1),
+                            null,
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getLong(5),
+                            resultSet.getBoolean(6)
+                    );
+                    vehicles.add(vehicle);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Vehicles not found in RentalDeal", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+
+        return vehicles;
     }
 }

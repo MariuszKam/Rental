@@ -16,11 +16,10 @@ public class StatusRepositoryImpl implements StatusRepository {
     public void create(Status status) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.status (id, Status) VALUES (?, ?)",
+                "INSERT INTO rental.status (Status) VALUES (?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
-            preparedStatement.setLong(1, status.getId());
-            preparedStatement.setString(2, status.getStatus());
+            preparedStatement.setString(1, status.getStatus());
             preparedStatement.executeUpdate();
             RepositoryUtility.setIdFromDatabase(status, preparedStatement, Status::setId);
         } catch (SQLException e) {

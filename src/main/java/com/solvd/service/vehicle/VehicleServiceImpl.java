@@ -5,6 +5,8 @@ import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.vehicle.VehicleRepository;
 import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
+import java.util.List;
+
 public class VehicleServiceImpl implements VehicleService {
     VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
     VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
@@ -31,5 +33,14 @@ public class VehicleServiceImpl implements VehicleService {
         Vehicle vehicle = vehicleRepository.findByRelatedTableId(table, id).orElseThrow(() -> new ItemNotFoundException("Vehicle"));
         vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(id));
         return vehicle;
+    }
+
+    @Override
+    public List<Vehicle> loadAllByRentalDealId(Long id) {
+        List<Vehicle> vehicles = vehicleRepository.findAllByRentalDealId(id);
+        for (Vehicle vehicle : vehicles) {
+            vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(vehicle.getId()));
+        }
+        return vehicles;
     }
 }
