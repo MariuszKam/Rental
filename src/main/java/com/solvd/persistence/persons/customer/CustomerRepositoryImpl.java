@@ -1,6 +1,8 @@
 package com.solvd.persistence.persons.customer;
 
+import com.solvd.model.deal.Status;
 import com.solvd.model.persons.customer.Customer;
+import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
@@ -48,6 +50,33 @@ public class CustomerRepositoryImpl implements CustomerRepository {
                             resultSet.getString(4),
                             resultSet.getString(5),
                             resultSet.getString(6)));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Customer not found", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Customer> findByRentalDealId(Long rentalDealId) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.customer WHERE id IN (SELECT Customer_id FROM rental.rental_deal WHERE id = ?)"
+        )) {
+            preparedStatement.setLong(1, rentalDealId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new Customer(
+                            resultSet.getLong(1),
+                            resultSet.getString(2),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(5),
+                            resultSet.getString(6)
+                    ));
                 }
             }
         } catch (SQLException e) {

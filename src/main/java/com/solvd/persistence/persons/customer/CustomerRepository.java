@@ -6,6 +6,9 @@ import java.util.Optional;
 
 public interface CustomerRepository {
     void create(Customer customer);
+
     Optional<Customer> findById(Long id);
+
+    Optional<Customer> findByRentalDealId(Long id);
 
 }

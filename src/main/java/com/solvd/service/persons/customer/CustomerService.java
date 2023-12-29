@@ -4,5 +4,8 @@ import com.solvd.model.persons.customer.Customer;
 
 public interface CustomerService {
     Customer create(Customer customer);
+
     Customer loadCustomerById(Long id);
+
+    Customer loadCustomerByRentalDealId(Long id);
 }

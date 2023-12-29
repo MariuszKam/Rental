@@ -1,5 +1,6 @@
 package com.solvd.service.persons.customer;
 
+import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.persistence.persons.customer.CustomerRepository;
 import com.solvd.persistence.persons.customer.CustomerRepositoryImpl;
@@ -16,7 +17,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer loadCustomerById(Long id) {
-        return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Customer not found"));
+        return customerRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Customer"));
+    }
+
+    @Override
+    public Customer loadCustomerByRentalDealId(Long id) {
+        return customerRepository.findByRentalDealId(id).orElseThrow(() -> new ItemNotFoundException("Customer"));
     }
 
 
