@@ -8,4 +8,6 @@ public interface StatusRepository {
     void create(Status status);
 
     Optional<Status> findById(Long id);
+
+    Optional<Status> findByRentalDealId(Long id);
 }

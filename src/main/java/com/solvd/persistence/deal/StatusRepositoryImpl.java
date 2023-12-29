@@ -1,7 +1,9 @@
 package com.solvd.persistence.deal;
 
 import com.solvd.model.deal.Status;
+import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,12 +16,13 @@ public class StatusRepositoryImpl implements StatusRepository {
     public void create(Status status) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.status (id, Status) VALUES (?, ?)"
+                "INSERT INTO rental.status (id, Status) VALUES (?, ?)",
+                PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setLong(1, status.getId());
             preparedStatement.setString(2, status.getStatus());
-
             preparedStatement.executeUpdate();
+            RepositoryUtility.setIdFromDatabase(status, preparedStatement, Status::setId);
         } catch (SQLException e) {
             throw new RuntimeException("Unable to create status", e);
         } finally {
@@ -41,6 +44,29 @@ public class StatusRepositoryImpl implements StatusRepository {
                             resultSet.getString("Status")
                     );
                     return Optional.of(status);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Status not found", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Status> findByRentalDealId(Long rentalDealId) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.status WHERE id IN (SELECT Status_id FROM rental.rental_deal WHERE id = ?)"
+        )) {
+            preparedStatement.setLong(1, rentalDealId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new Status(
+                            resultSet.getLong(1),
+                            resultSet.getString(2)
+                    ));
                 }
             }
         } catch (SQLException e) {

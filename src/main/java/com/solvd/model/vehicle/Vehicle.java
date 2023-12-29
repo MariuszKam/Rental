@@ -1,8 +1,5 @@
 package com.solvd.model.vehicle;
 
-import com.solvd.model.deal.RentalDeal;
-
-import java.util.List;
 import java.util.Objects;
 
 public class Vehicle {
@@ -11,15 +8,15 @@ public class Vehicle {
     private final String model;
     private final String registrationNumber;
     private Long currentKilometers;
-    private boolean status;
+    private boolean available;
 
-    public Vehicle(Long id, VehicleType vehicleType, String model, String registrationNumber, Long currentKilometers, boolean status) {
+    public Vehicle(Long id, VehicleType vehicleType, String model, String registrationNumber, Long currentKilometers, boolean available) {
         this.id = id;
         this.vehicleType = vehicleType;
         this.model = model;
         this.registrationNumber = registrationNumber;
         this.currentKilometers = currentKilometers;
-        this.status = status;
+        this.available = available;
     }
 
     public Long getId() {
@@ -54,12 +51,12 @@ public class Vehicle {
         this.currentKilometers = currentKilometers;
     }
 
-    public boolean isStatus() {
-        return status;
+    public boolean isAvailable() {
+        return available;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     @Override
@@ -67,12 +64,12 @@ public class Vehicle {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehicle vehicle = (Vehicle) o;
-        return status == vehicle.status && Objects.equals(id, vehicle.id) && Objects.equals(vehicleType, vehicle.vehicleType) && Objects.equals(model, vehicle.model) && Objects.equals(registrationNumber, vehicle.registrationNumber) && Objects.equals(currentKilometers, vehicle.currentKilometers);
+        return available == vehicle.available && Objects.equals(id, vehicle.id) && Objects.equals(vehicleType, vehicle.vehicleType) && Objects.equals(model, vehicle.model) && Objects.equals(registrationNumber, vehicle.registrationNumber) && Objects.equals(currentKilometers, vehicle.currentKilometers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vehicleType, model, registrationNumber, currentKilometers, status);
+        return Objects.hash(id, vehicleType, model, registrationNumber, currentKilometers, available);
     }
 
     @Override
@@ -83,7 +80,7 @@ public class Vehicle {
                 ", model='" + model + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
                 ", currentKilometers=" + currentKilometers +
-                ", status=" + status +
+                ", status=" + available +
                 '}';
     }
 }

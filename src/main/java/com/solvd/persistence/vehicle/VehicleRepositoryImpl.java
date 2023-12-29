@@ -18,14 +18,14 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     public void create(Vehicle vehicle) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.vehicle (Vehicle_Type_id, Model, Registration_Number, Current_Kilometers, Status) VALUES (?, ?, ?, ?, ?)",
+                "INSERT INTO rental.vehicle (Vehicle_Type_id, Model, Registration_Number, Current_Kilometers, Available) VALUES (?, ?, ?, ?, ?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setLong(1, vehicle.getVehicleType().getId());
             preparedStatement.setString(2, vehicle.getModel());
             preparedStatement.setString(3, vehicle.getRegistrationNumber());
             preparedStatement.setLong(4, vehicle.getCurrentKilometers());
-            preparedStatement.setBoolean(5, vehicle.isStatus());
+            preparedStatement.setBoolean(5, vehicle.isAvailable());
             preparedStatement.executeUpdate();
             RepositoryUtility.setIdFromDatabase(vehicle, preparedStatement, Vehicle::setId);
         } catch (SQLException e) {

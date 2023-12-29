@@ -10,13 +10,13 @@ import java.util.List;
 
 public class RentalDeal {
     private Long id;
-    private final Customer customer;
+    private Customer customer;
     private final LocalDateTime startRental;
     private final LocalDateTime endRental;
     private final BigDecimal totalCost;
-    private final Employee employee;
+    private Employee employee;
     private final Status status;
-    private final List<Vehicle> vehicles;
+    private List<Vehicle> vehicles;
 
     public RentalDeal(Long id, Customer customer, LocalDateTime startRental, LocalDateTime endRental, BigDecimal totalCost, Employee employee, Status status, List<Vehicle> vehicles) {
         this.id = id;
@@ -64,6 +64,7 @@ public class RentalDeal {
     public List<Vehicle> getVehicles() {
         return vehicles;
     }
+
 
     @Override
     public String toString() {
