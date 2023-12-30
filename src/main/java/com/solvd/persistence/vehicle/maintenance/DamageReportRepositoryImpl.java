@@ -15,7 +15,7 @@ public class DamageReportRepositoryImpl implements DamageReportRepository {
     public void create(DamageReport damageReport) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.damage_report (report_date, description, Vehicle_id, RentalDeal_id) VALUES (?, ?, ?, ?)",
+                "INSERT INTO rental.damage_report (report_date, description, Vehicle_id, Rental_Deal_id) VALUES (?, ?, ?, ?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setObject(1, damageReport.getReportDate());
