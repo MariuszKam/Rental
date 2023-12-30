@@ -1,6 +1,5 @@
 package com.solvd.persistence.vehicle.maintenance;
 
-import com.solvd.model.vehicle.VehicleType;
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;

@@ -1,10 +1,8 @@
 package com.solvd.persistence.vehicle.maintenance;
 
-import com.solvd.model.vehicle.Vehicle;
 import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
-import com.solvd.persistence.vehicle.VehicleRepository;
 //import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 import java.sql.Connection;

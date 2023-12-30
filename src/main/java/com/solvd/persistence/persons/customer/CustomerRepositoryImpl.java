@@ -1,8 +1,6 @@
 package com.solvd.persistence.persons.customer;
 
-import com.solvd.model.deal.Status;
 import com.solvd.model.persons.customer.Customer;
-import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
 

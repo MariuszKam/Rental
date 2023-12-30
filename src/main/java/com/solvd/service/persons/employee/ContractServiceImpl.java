@@ -5,8 +5,6 @@ import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.persons.employee.ContractRepositoryImpl;
 
-import java.util.Optional;
-
 public class ContractServiceImpl implements ContractService {
     private final ContractRepository contractRepository = new ContractRepositoryImpl();
 

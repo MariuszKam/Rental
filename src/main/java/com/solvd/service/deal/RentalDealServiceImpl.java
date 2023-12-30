@@ -29,10 +29,21 @@ public class RentalDealServiceImpl implements RentalDealService {
     @Override
     public RentalDeal loadRentalDealById(Long id) {
         RentalDeal rentalDeal = rentalDealRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Rental Deal"));
-        rentalDeal.setCustomer(customerService.loadCustomerByRentalDealId(id));
-        rentalDeal.setEmployee(employeeService.loadEmployeeByRentalDealId(id));
-        rentalDeal.setStatus(statusService.loadStatusByRentalDealId(id));
-        rentalDeal.setVehicles(vehicleService.loadAllByRentalDealId(id));
+        setRentalDealRelatedObjects(rentalDeal);
         return rentalDeal;
+    }
+
+    @Override
+    public RentalDeal loadRentalDealByTableAndId(String table, Long id) {
+        RentalDeal rentalDeal = rentalDealRepository.findByRelatedTableId(table, id).orElseThrow(() -> new ItemNotFoundException("RentalDeal"));
+        setRentalDealRelatedObjects(rentalDeal);
+        return rentalDeal;
+    }
+
+    private void setRentalDealRelatedObjects(RentalDeal rentalDeal) {
+        rentalDeal.setCustomer(customerService.loadCustomerByRentalDealId(rentalDeal.getId()));
+        rentalDeal.setEmployee(employeeService.loadEmployeeByRentalDealId(rentalDeal.getId()));
+        rentalDeal.setStatus(statusService.loadStatusByRentalDealId(rentalDeal.getId()));
+        rentalDeal.setVehicles(vehicleService.loadAllByRentalDealId(rentalDeal.getId()));
     }
 }

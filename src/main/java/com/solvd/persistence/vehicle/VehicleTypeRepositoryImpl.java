@@ -1,6 +1,5 @@
 package com.solvd.persistence.vehicle;
 
-import com.solvd.model.persons.employee.Contract;
 import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;

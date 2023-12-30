@@ -84,7 +84,36 @@ public class RentalDealRepositoryImpl implements RentalDealRepository {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Error finding rental deal by ID", e);
+            throw new RuntimeException("Rental Deal not found", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<RentalDeal> findByRelatedTableId(String table, Long id) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.rental_deal WHERE id IN (SELECT Rental_Deal_id FROM rental." + table + " WHERE id = ?)"
+        )) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return Optional.of(new RentalDeal(
+                            resultSet.getLong(1),
+                            null,
+                            resultSet.getTimestamp(3).toLocalDateTime(),
+                            resultSet.getTimestamp(4).toLocalDateTime(),
+                            resultSet.getBigDecimal(5),
+                            null,
+                            null,
+                            null
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Rental Deal not found", e);
         } finally {
             ConnectionPool.releaseConnection(connection);
         }
