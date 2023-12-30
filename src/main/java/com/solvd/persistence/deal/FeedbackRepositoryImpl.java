@@ -15,7 +15,7 @@ public class FeedbackRepositoryImpl implements FeedbackRepository {
     public void create(Feedback feedback) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.feedback (rate, description, RentalDeal_id, Customer_id) VALUES (?, ?, ?, ?)",
+                "INSERT INTO rental.feedback (rate, description, Rental_Deal_id, Customer_id) VALUES (?, ?, ?, ?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setInt(1, feedback.getRate());
