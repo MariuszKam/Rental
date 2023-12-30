@@ -23,8 +23,8 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public Feedback loadById(Long id) {
         Feedback feedback = feedbackRepository.findById(id).orElseThrow(() -> new ItemNotFoundException("Feedback"));
-        feedback.setRentalDeal(rentalDealService.);
-        feedback.setCustomer();
-
+        feedback.setRentalDeal(rentalDealService.loadRentalDealByTableAndId("feedback", id));
+        feedback.setCustomer(customerService.loadCustomerByRentalDealId(feedback.getRentalDeal().getId()));
+        return feedback;
     }
 }
