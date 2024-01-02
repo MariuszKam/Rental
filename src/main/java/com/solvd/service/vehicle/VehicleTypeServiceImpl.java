@@ -25,5 +25,15 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
         return vehicleTypeRepository.findByVehicleId(id).orElseThrow(() -> new ItemNotFoundException("VehicleType"));
     }
 
+    @Override
+    public boolean exists(VehicleType vehicleType) {
+        return vehicleTypeRepository.existsById(vehicleType.getId());
+    }
+
+    @Override
+    public void deleteByName(String name) {
+        vehicleTypeRepository.deleteByName(name);
+    }
+
 
 }

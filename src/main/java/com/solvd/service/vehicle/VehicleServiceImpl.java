@@ -14,7 +14,7 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public Vehicle create(Vehicle vehicle) {
         vehicle.setId(null);
-        if (vehicle.getVehicleType() != null) {
+        if (vehicle.getVehicleType() != null && !vehicleTypeService.exists(vehicle.getVehicleType())) {
             vehicleTypeService.create(vehicle.getVehicleType());
         }
         vehicleRepository.create(vehicle);

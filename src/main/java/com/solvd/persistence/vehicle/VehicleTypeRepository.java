@@ -11,4 +11,9 @@ public interface VehicleTypeRepository extends Repositorable<VehicleType> {
     Optional<VehicleType> findById(Long id);
 
     Optional<VehicleType> findByVehicleId(Long id);
+
+    boolean existsById(Long id);
+
+    void deleteByName(String name);
+
 }

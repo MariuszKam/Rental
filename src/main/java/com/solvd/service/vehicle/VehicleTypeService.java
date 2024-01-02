@@ -8,4 +8,8 @@ public interface VehicleTypeService {
     VehicleType loadVehicleTypeById(Long id);
 
     VehicleType loadVehicleTypeByVehicleId(Long id);
+
+    boolean exists(VehicleType vehicleType);
+
+    void deleteByName(String name);
 }

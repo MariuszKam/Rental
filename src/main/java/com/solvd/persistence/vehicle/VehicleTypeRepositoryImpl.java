@@ -70,4 +70,36 @@ public class VehicleTypeRepositoryImpl implements VehicleTypeRepository {
         }
         return Optional.empty();
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT 1 FROM rental.vehicle_type WHERE id = ?"
+        )) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Cannot check existence by ID", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
+
+    @Override
+    public void deleteByName(String name) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "DELETE FROM rental.vehicle_type WHERE Type_Name = ?"
+        )) {
+            preparedStatement.setString(1, name);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to delete vehicle type by name", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
 }
