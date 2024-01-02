@@ -12,4 +12,6 @@ public interface VehicleService {
     Vehicle loadVehicleByTableAndId(String table, Long id);
 
     List<Vehicle> loadAllByRentalDealId(Long id);
+
+    void setAvailability(Long id, boolean availability);
 }

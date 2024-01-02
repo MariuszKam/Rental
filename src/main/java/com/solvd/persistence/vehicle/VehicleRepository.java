@@ -14,4 +14,6 @@ public interface VehicleRepository extends Repositorable<Vehicle> {
     Optional<Vehicle> findByRelatedTableId(String table, Long id);
 
     List<Vehicle> findAllByRentalDealId(Long id);
+
+    void updateAvailableById(Long id, boolean available);
 }

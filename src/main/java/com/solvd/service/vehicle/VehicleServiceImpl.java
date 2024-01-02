@@ -43,4 +43,9 @@ public class VehicleServiceImpl implements VehicleService {
         }
         return vehicles;
     }
+
+    @Override
+    public void setAvailability(Long id, boolean availability) {
+        vehicleRepository.updateAvailableById(id, availability);
+    }
 }

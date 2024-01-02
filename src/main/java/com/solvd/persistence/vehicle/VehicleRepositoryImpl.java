@@ -124,4 +124,20 @@ public class VehicleRepositoryImpl implements VehicleRepository {
 
         return vehicles;
     }
+
+    @Override
+    public void updateAvailableById(Long id, boolean available) {
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "UPDATE rental.vehicle SET Available = ? WHERE id = ?"
+        )) {
+            preparedStatement.setBoolean(1, available);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to update vehicle availability", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+    }
 }
