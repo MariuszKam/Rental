@@ -5,6 +5,10 @@ import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.vehicle.VehicleTypeRepository;
 import com.solvd.persistence.vehicle.VehicleTypeRepositoryImpl;
 
+import java.util.List;
+
+import static com.solvd.Main.logger;
+
 public class VehicleTypeServiceImpl implements VehicleTypeService {
     VehicleTypeRepository vehicleTypeRepository = new VehicleTypeRepositoryImpl();
 
@@ -26,6 +30,11 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
     }
 
     @Override
+    public List<VehicleType> loadAll() {
+        return vehicleTypeRepository.loadAll();
+    }
+
+    @Override
     public boolean exists(VehicleType vehicleType) {
         return vehicleTypeRepository.existsById(vehicleType.getId());
     }
@@ -33,6 +42,11 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
     @Override
     public void deleteByName(String name) {
         vehicleTypeRepository.deleteByName(name);
+    }
+
+    @Override
+    public void showAllByNames() {
+        loadAll().stream().map(VehicleType::getTypeName).forEach(logger::info);
     }
 
 

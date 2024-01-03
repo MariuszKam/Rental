@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class VehicleTypeRepositoryImpl implements VehicleTypeRepository {
@@ -69,6 +71,30 @@ public class VehicleTypeRepositoryImpl implements VehicleTypeRepository {
             ConnectionPool.releaseConnection(connection);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<VehicleType> loadAll() {
+        List<VehicleType> vehicleTypes = new ArrayList<>();
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.vehicle_type"
+        )) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    VehicleType vehicleType = new VehicleType(
+                            resultSet.getLong("id"),
+                            resultSet.getString("Type_Name")
+                    );
+                    vehicleTypes.add(vehicleType);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to load all vehicle types", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return vehicleTypes;
     }
 
     @Override

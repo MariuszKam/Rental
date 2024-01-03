@@ -2,6 +2,8 @@ package com.solvd.service.vehicle;
 
 import com.solvd.model.vehicle.VehicleType;
 
+import java.util.List;
+
 public interface VehicleTypeService {
     VehicleType create(VehicleType vehicleType);
 
@@ -9,7 +11,11 @@ public interface VehicleTypeService {
 
     VehicleType loadVehicleTypeByVehicleId(Long id);
 
+    List<VehicleType> loadAll();
+
     boolean exists(VehicleType vehicleType);
 
     void deleteByName(String name);
+
+    void showAllByNames();
 }

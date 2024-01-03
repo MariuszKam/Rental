@@ -5,3 +5,4 @@ target/
 !**/src/test/**/target/
 /src/main/resources/db.properties
 /src/main/java/com/solvd/databasefeeder/
+/app.log
