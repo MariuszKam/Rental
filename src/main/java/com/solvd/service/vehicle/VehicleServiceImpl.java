@@ -2,10 +2,14 @@ package com.solvd.service.vehicle;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.Vehicle;
+import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.vehicle.VehicleRepository;
 import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.solvd.Main.logger;
 
 public class VehicleServiceImpl implements VehicleService {
     VehicleRepository vehicleRepository = new VehicleRepositoryImpl();
@@ -36,6 +40,13 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public List<Vehicle> loadAll() {
+        return vehicleRepository.loadAll().stream()
+                .peek(vehicle -> vehicle.setVehicleType(vehicleTypeService.loadVehicleTypeByVehicleId(vehicle.getId())))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<Vehicle> loadAllByRentalDealId(Long id) {
         List<Vehicle> vehicles = vehicleRepository.findAllByRentalDealId(id);
         for (Vehicle vehicle : vehicles) {
@@ -47,5 +58,13 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void setAvailability(Long id, boolean availability) {
         vehicleRepository.updateAvailableById(id, availability);
+    }
+
+    public void showAvailableByVehicleType(String typeName) {
+        List<Vehicle> toShow = loadAll().stream()
+                .filter(vehicle -> vehicle.getVehicleType().getTypeName().equalsIgnoreCase(typeName))
+                .filter(Vehicle::isAvailable)
+                .toList();
+        toShow.forEach(logger::info);
     }
 }

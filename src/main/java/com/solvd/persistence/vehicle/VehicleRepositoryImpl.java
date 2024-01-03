@@ -2,6 +2,7 @@ package com.solvd.persistence.vehicle;
 
 
 import com.solvd.model.vehicle.Vehicle;
+import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
@@ -92,6 +93,34 @@ public class VehicleRepositoryImpl implements VehicleRepository {
     }
 
     @Override
+    public List<Vehicle> loadAll() {
+        List<Vehicle> vehicles = new ArrayList<>();
+        Connection connection = ConnectionPool.get();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(
+                "SELECT * FROM rental.vehicle"
+        )) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Vehicle vehicle = new Vehicle(
+                            resultSet.getLong(1),
+                            null,
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getLong(5),
+                            resultSet.getBoolean(6)
+                    );
+                    vehicles.add(vehicle);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to load all vehicles", e);
+        } finally {
+            ConnectionPool.releaseConnection(connection);
+        }
+        return vehicles;
+    }
+
+    @Override
     public List<Vehicle> findAllByRentalDealId(Long rentalDealId) {
         List<Vehicle> vehicles = new ArrayList<>();
         Connection connection = ConnectionPool.get();
@@ -125,6 +154,7 @@ public class VehicleRepositoryImpl implements VehicleRepository {
         return vehicles;
     }
 
+
     @Override
     public void updateAvailableById(Long id, boolean available) {
         Connection connection = ConnectionPool.get();
@@ -140,4 +170,5 @@ public class VehicleRepositoryImpl implements VehicleRepository {
             ConnectionPool.releaseConnection(connection);
         }
     }
+
 }

@@ -11,7 +11,11 @@ public interface VehicleService {
 
     Vehicle loadVehicleByTableAndId(String table, Long id);
 
+    List<Vehicle> loadAll();
+
     List<Vehicle> loadAllByRentalDealId(Long id);
 
     void setAvailability(Long id, boolean availability);
+
+    void showAvailableByVehicleType(String typeName);
 }
