@@ -2,6 +2,7 @@ package com.solvd.service.deal;
 
 import com.solvd.model.deal.RentalDeal;
 import com.solvd.model.exception.ItemNotFoundException;
+import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.deal.RentalDealRepository;
 import com.solvd.persistence.deal.RentalDealRepositoryImpl;
 import com.solvd.service.persons.customer.CustomerService;
@@ -22,6 +23,11 @@ public class RentalDealServiceImpl implements RentalDealService {
     @Override
     public RentalDeal create(RentalDeal rentalDeal) {
         rentalDeal.setId(null);
+        //Setting vehicles unavailable
+        rentalDeal.getVehicles().forEach(vehicle -> {
+            vehicle.setAvailable(false);
+            vehicleService.setAvailability(vehicle.getId(), vehicle.isAvailable());
+        });
         rentalDealRepository.create(rentalDeal);
         return rentalDeal;
     }
