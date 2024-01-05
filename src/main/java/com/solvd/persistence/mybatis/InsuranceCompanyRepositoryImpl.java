@@ -1,8 +1,9 @@
-package com.solvd.persistence.vehicle.maintenance;
+package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
+import com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

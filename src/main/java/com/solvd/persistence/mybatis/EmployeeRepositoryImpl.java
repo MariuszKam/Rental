@@ -1,8 +1,9 @@
-package com.solvd.persistence.persons.employee;
+package com.solvd.persistence.mybatis;
 
 
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.EmployeeRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;

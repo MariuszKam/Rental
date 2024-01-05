@@ -1,7 +1,8 @@
-package com.solvd.persistence.persons.customer;
+package com.solvd.persistence.jdbc;
 
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.customer.CustomerRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;

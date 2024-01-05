@@ -1,7 +1,8 @@
-package com.solvd.persistence.deal;
+package com.solvd.persistence.mybatis;
 
 import com.solvd.model.deal.Status;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.deal.StatusRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;

@@ -1,8 +1,10 @@
-package com.solvd.persistence.deal;
+package com.solvd.persistence.mybatis;
 
-import com.solvd.model.deal.Feedback;
+
+import com.solvd.model.vehicle.maintenance.Insurance;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
+import com.solvd.persistence.vehicle.maintenance.InsuranceRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,47 +12,50 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class FeedbackRepositoryImpl implements FeedbackRepository {
+public class InsuranceRepositoryImpl implements InsuranceRepository {
+
+
     @Override
-    public void create(Feedback feedback) {
+    public void create(Insurance insurance) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.feedback (rate, description, Rental_Deal_id, Customer_id) VALUES (?, ?, ?, ?)",
+                "INSERT INTO rental.insurance (Vehicle_id, PolicyNumber, Cost, Insurance_Company_id) VALUES (?, ?, ?, ?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
-            preparedStatement.setInt(1, feedback.getRate());
-            preparedStatement.setString(2, feedback.getDescription());
-            preparedStatement.setLong(3, feedback.getRentalDeal().getId());
-            preparedStatement.setLong(4, feedback.getCustomer().getId());
+            preparedStatement.setLong(1, insurance.getVehicle().getId());
+            preparedStatement.setInt(2, insurance.getPolicyNumber());
+            preparedStatement.setBigDecimal(3, insurance.getCost());
+            preparedStatement.setLong(4, insurance.getInsuranceCompany().getId());
             preparedStatement.executeUpdate();
-            RepositoryUtility.setIdFromDatabase(feedback, preparedStatement, Feedback::setId);
+            RepositoryUtility.setIdFromDatabase(insurance, preparedStatement, Insurance::setId);
         } catch (SQLException e) {
-            throw new RuntimeException("Unable to create feedback", e);
+            throw new RuntimeException("Unable to create insurance", e);
         } finally {
             ConnectionPool.releaseConnection(connection);
         }
     }
 
     @Override
-    public Optional<Feedback> findById(Long id) {
+    public Optional<Insurance> findById(Long id) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT * FROM rental.feedback WHERE id = ?"
+                "SELECT * FROM rental.insurance WHERE id = ?"
         )) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return Optional.of(new Feedback(
-                            resultSet.getLong("id"),
-                            resultSet.getInt("rate"),
-                            resultSet.getString("description"),
+
+                    return Optional.of(new Insurance(
+                            resultSet.getLong(1),
                             null,
+                            resultSet.getInt(3),
+                            resultSet.getBigDecimal(4),
                             null
                     ));
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException("Feedback not found", e);
+            throw new RuntimeException("Insurance not found", e);
         } finally {
             ConnectionPool.releaseConnection(connection);
         }

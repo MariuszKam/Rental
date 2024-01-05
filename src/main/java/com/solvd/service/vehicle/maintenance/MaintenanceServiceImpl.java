@@ -3,7 +3,7 @@ package com.solvd.service.vehicle.maintenance;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.persistence.vehicle.maintenance.MaintenanceRepository;
-import com.solvd.persistence.vehicle.maintenance.MaintenanceRepositoryImpl;
+import com.solvd.persistence.jdbc.MaintenanceRepositoryImpl;
 import com.solvd.service.vehicle.VehicleService;
 import com.solvd.service.vehicle.VehicleServiceImpl;
 

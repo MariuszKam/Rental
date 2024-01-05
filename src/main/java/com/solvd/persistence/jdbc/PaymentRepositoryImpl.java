@@ -1,7 +1,8 @@
-package com.solvd.persistence.deal;
+package com.solvd.persistence.jdbc;
 
 import com.solvd.model.deal.Payment;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.deal.PaymentRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;

@@ -1,7 +1,8 @@
-package com.solvd.persistence.persons.employee;
+package com.solvd.persistence.jdbc;
 
 import com.solvd.model.persons.employee.Contract;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;

@@ -2,9 +2,8 @@ package com.solvd.service.vehicle;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.Vehicle;
-import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.vehicle.VehicleRepository;
-import com.solvd.persistence.vehicle.VehicleRepositoryImpl;
+import com.solvd.persistence.jdbc.VehicleRepositoryImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;

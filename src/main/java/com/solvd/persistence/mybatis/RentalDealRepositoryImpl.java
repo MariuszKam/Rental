@@ -1,8 +1,9 @@
-package com.solvd.persistence.deal;
+package com.solvd.persistence.mybatis;
 
 import com.solvd.model.deal.RentalDeal;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.deal.RentalDealRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

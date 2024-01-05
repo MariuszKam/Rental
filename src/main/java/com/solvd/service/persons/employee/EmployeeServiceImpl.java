@@ -3,7 +3,7 @@ package com.solvd.service.persons.employee;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.persons.employee.EmployeeRepository;
-import com.solvd.persistence.persons.employee.EmployeeRepositoryImpl;
+import com.solvd.persistence.jdbc.EmployeeRepositoryImpl;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();

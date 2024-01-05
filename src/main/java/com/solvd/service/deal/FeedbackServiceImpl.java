@@ -3,7 +3,7 @@ package com.solvd.service.deal;
 import com.solvd.model.deal.Feedback;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.persistence.deal.FeedbackRepository;
-import com.solvd.persistence.deal.FeedbackRepositoryImpl;
+import com.solvd.persistence.jdbc.FeedbackRepositoryImpl;
 import com.solvd.service.persons.customer.CustomerService;
 import com.solvd.service.persons.customer.CustomerServiceImpl;
 

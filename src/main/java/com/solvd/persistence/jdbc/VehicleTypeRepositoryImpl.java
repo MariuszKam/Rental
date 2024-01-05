@@ -1,8 +1,9 @@
-package com.solvd.persistence.vehicle;
+package com.solvd.persistence.jdbc;
 
 import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.utilities.RepositoryUtility;
+import com.solvd.persistence.vehicle.VehicleTypeRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

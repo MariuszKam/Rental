@@ -3,7 +3,7 @@ package com.solvd.service.deal;
 import com.solvd.model.deal.Payment;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.persistence.deal.PaymentRepository;
-import com.solvd.persistence.deal.PaymentRepositoryImpl;
+import com.solvd.persistence.jdbc.PaymentRepositoryImpl;
 
 public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository = new PaymentRepositoryImpl();

@@ -3,7 +3,7 @@ package com.solvd.service.persons.customer;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.persistence.persons.customer.CustomerRepository;
-import com.solvd.persistence.persons.customer.CustomerRepositoryImpl;
+import com.solvd.persistence.mybatis.CustomerRepositoryImpl;
 
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository = new CustomerRepositoryImpl();
