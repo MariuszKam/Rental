@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -21,7 +22,7 @@ public class RepositoryUtility {
         }
     }
 
-    public static <T, R> R executeTypeSQL(Class<T> repositoryClass, Function<T, R> sqlOperation) {
+    public static <T, R> Optional<R> executeTypeSQL(Class<T> repositoryClass, Function<T, Optional<R>> sqlOperation) {
         try (SqlSession sqlSession = MyBaitsConfig.getSqlSessionFactory().openSession()) {
             T repository = sqlSession.getMapper(repositoryClass);
             return sqlOperation.apply(repository);

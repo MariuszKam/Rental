@@ -13,7 +13,7 @@
     </select>
 
     <select id="findByRentalDealId" resultMap="CustomerResultMap">
-        FROM customer
+        SELECT * FROM customer
         WHERE id IN (SELECT Customer_id FROM rental_deal WHERE id = #{id})
     </select>
 

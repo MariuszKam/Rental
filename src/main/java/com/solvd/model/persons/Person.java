@@ -14,6 +14,9 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
+    public Person() {
+    }
+
     public long getId() {
         return id;
     }

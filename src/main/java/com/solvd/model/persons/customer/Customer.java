@@ -16,6 +16,10 @@ public class Customer extends Person {
         this.address = address;
     }
 
+    public Customer() {
+        super();
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
