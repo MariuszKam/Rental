@@ -20,6 +20,11 @@ public class Insurance {
         this.insuranceCompany = insuranceCompany;
     }
 
+    public Insurance() {
+        this.policyNumber = null;
+        this.cost = null;
+    }
+
     public Long getId() {
         return id;
     }

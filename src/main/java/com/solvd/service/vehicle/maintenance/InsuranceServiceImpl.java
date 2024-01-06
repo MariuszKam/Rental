@@ -2,7 +2,7 @@ package com.solvd.service.vehicle.maintenance;
 
 import com.solvd.model.vehicle.maintenance.Insurance;
 import com.solvd.persistence.vehicle.maintenance.InsuranceRepository;
-import com.solvd.persistence.jdbc.InsuranceRepositoryImpl;
+import com.solvd.persistence.mybatis.InsuranceRepositoryImpl;
 import com.solvd.service.vehicle.VehicleService;
 import com.solvd.service.vehicle.VehicleServiceImpl;
 

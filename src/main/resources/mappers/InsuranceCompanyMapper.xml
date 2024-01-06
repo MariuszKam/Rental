@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO insurance_company (Insurance_Name)
+        VALUES (#{name})
+    </insert>
+
+    <select id="findById" resultMap="InsuranceCompanyResultMap">
+        SELECT * FROM insurance_company WHERE id = #{id}
+    </select>
+
+    <select id="findByInsuranceId" resultMap="InsuranceCompanyResultMap">
+        SELECT * FROM insurance_company
+        WHERE id IN (SELECT Insurance_Company_id FROM insurance WHERE id = #{insuranceId})
+    </select>
+
+    <resultMap id="InsuranceCompanyResultMap" type="com.solvd.model.vehicle.maintenance.InsuranceCompany"
+               autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="name" column="Insurance_Name"/>
+    </resultMap>
+</mapper>

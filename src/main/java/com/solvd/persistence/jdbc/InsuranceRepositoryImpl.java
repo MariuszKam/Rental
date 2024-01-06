@@ -20,7 +20,7 @@ public class InsuranceRepositoryImpl implements InsuranceRepository {
     public void create(Insurance insurance) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "INSERT INTO rental.insurance (Vehicle_id, PolicyNumber, Cost, Insurance_Company_id) VALUES (?, ?, ?, ?)",
+                "INSERT INTO rental.insurance (Vehicle_id, Policy_Number, Cost, Insurance_Company_id) VALUES (?, ?, ?, ?)",
                 PreparedStatement.RETURN_GENERATED_KEYS
         )) {
             preparedStatement.setLong(1, insurance.getVehicle().getId());

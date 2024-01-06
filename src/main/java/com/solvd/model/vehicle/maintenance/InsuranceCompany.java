@@ -11,6 +11,10 @@ public class InsuranceCompany {
         this.name = name;
     }
 
+    public InsuranceCompany() {
+        this.name = "";
+    }
+
     public Long getId() {
         return id;
     }
