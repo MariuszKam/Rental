@@ -21,6 +21,12 @@ public class Maintenance {
         this.cost = cost;
     }
 
+    public Maintenance() {
+        this.date = null;
+        this.description = null;
+        this.cost = null;
+    }
+
     public Long getId() {
         return id;
     }

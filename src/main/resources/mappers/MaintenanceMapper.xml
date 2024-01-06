@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.vehicle.maintenance.MaintenanceRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO maintenance (Vehicle_id, Maintenance_Date, Description, Cost)
+        VALUES (#{vehicle.id}, #{date}, #{description}, #{cost})
+    </insert>
+
+    <select id="findById" resultMap="MaintenanceResultMap">
+        SELECT * FROM maintenance WHERE id = #{id}
+    </select>
+
+    <resultMap id="MaintenanceResultMap" type="com.solvd.model.vehicle.maintenance.Maintenance" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="date" column="Maintenance_Date"/>
+        <result property="description" column="Description"/>
+        <result property="cost" column="Cost"/>
+        <association property="vehicle" resultMap="com.solvd.persistence.vehicle.VehicleRepository.VehicleResultMap"/>
+    </resultMap>
+</mapper>
