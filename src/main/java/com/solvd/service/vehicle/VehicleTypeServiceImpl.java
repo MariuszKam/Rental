@@ -3,7 +3,7 @@ package com.solvd.service.vehicle;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.VehicleType;
 import com.solvd.persistence.vehicle.VehicleTypeRepository;
-import com.solvd.persistence.jdbc.VehicleTypeRepositoryImpl;
+import com.solvd.persistence.mybatis.VehicleTypeRepositoryImpl;
 
 import java.util.List;
 

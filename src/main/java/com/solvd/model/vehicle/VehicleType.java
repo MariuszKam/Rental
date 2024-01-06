@@ -11,6 +11,10 @@ public class VehicleType {
         this.typeName = typeName;
     }
 
+    public VehicleType() {
+        this.typeName = "";
+    }
+
     public Long getId() {
         return id;
     }

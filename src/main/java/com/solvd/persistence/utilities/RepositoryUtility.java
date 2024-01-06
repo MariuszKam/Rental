@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class RepositoryUtility {
 
@@ -37,7 +38,14 @@ public class RepositoryUtility {
         }
     }
 
-    public static <T> List<T> executeListSQL(Class<T> repositoryClass, Function<T, List<T>> sqlOperation) {
+    public static <T, R> List<R> executeListSQL(Class<T> repositoryClass, Function<T, List<R>> sqlOperation) {
+        try (SqlSession sqlSession = MyBaitsConfig.getSqlSessionFactory().openSession()) {
+            T repository = sqlSession.getMapper(repositoryClass);
+            return sqlOperation.apply(repository);
+        }
+    }
+
+    public static <T> boolean executeBooleanSQL(Class<T> repositoryClass, Function<T, Boolean> sqlOperation) {
         try (SqlSession sqlSession = MyBaitsConfig.getSqlSessionFactory().openSession()) {
             T repository = sqlSession.getMapper(repositoryClass);
             return sqlOperation.apply(repository);

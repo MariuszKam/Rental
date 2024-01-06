@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.vehicle.VehicleTypeRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO vehicle_type (Type_Name)
+        VALUES (#{typeName})
+    </insert>
+
+    <select id="findById" resultMap="VehicleTypeResultMap">
+        SELECT * FROM vehicle_type WHERE id = #{id}
+    </select>
+
+    <select id="findByRentalDealId" resultMap="VehicleTypeResultMap">
+        SELECT * FROM vehicle_type
+        WHERE id IN (SELECT Vehicle_Type_id FROM Vehicle WHERE id = #{id})
+    </select>
+
+    <select id="loadAll" resultMap="VehicleTypeResultMap">
+        SELECT * FROM vehicle_type
+    </select>
+
+    <select id="existsById" resultType="boolean">
+        SELECT 1 FROM vehicle_type WHERE id = #{id}
+    </select>
+
+    <delete id="deleteByName">
+        DELETE FROM vehicle_type WHERE Type_Name = #{name}
+    </delete>
+
+    <resultMap id="VehicleTypeResultMap" type="com.solvd.model.vehicle.VehicleType" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="typeName" column="Type_Name"/>
+    </resultMap>
+</mapper>
