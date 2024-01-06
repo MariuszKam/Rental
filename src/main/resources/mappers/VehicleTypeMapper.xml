@@ -12,7 +12,7 @@
         SELECT * FROM vehicle_type WHERE id = #{id}
     </select>
 
-    <select id="findByRentalDealId" resultMap="VehicleTypeResultMap">
+    <select id="findByVehicleId" resultMap="VehicleTypeResultMap">
         SELECT * FROM vehicle_type
         WHERE id IN (SELECT Vehicle_Type_id FROM Vehicle WHERE id = #{id})
     </select>
@@ -21,8 +21,8 @@
         SELECT * FROM vehicle_type
     </select>
 
-    <select id="existsById" resultType="boolean">
-        SELECT 1 FROM rental.vehicle_type WHERE Type_Name = = #{typeName}
+    <select id="existsByName" resultType="boolean">
+        SELECT EXISTS (SELECT 1 FROM rental.vehicle_type WHERE Type_Name = #{typeName})
     </select>
 
     <delete id="deleteByName">

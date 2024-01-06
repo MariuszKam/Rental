@@ -1,8 +1,10 @@
 package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.VehicleType;
+import com.solvd.persistence.connection.MyBaitsConfig;
 import com.solvd.persistence.utilities.RepositoryUtility;
 import com.solvd.persistence.vehicle.VehicleTypeRepository;
+import org.apache.ibatis.session.SqlSession;
 
 
 import java.util.List;
