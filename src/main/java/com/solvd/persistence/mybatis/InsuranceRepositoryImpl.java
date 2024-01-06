@@ -3,6 +3,7 @@ package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.maintenance.Insurance;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 import com.solvd.persistence.vehicle.maintenance.InsuranceRepository;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 public class InsuranceRepositoryImpl implements InsuranceRepository {
 
+    private static final Class<InsuranceRepository> REPOSITORY_CLASS = InsuranceRepository.class;
 
     @Override
     public void create(Insurance insurance) {

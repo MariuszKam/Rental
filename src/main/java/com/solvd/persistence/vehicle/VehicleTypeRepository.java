@@ -15,7 +15,7 @@ public interface VehicleTypeRepository extends Repositorable<VehicleType> {
 
     List<VehicleType> loadAll();
 
-    boolean existsById(Long id);
+    boolean existsByName(String name);
 
     void deleteByName(String name);
 

@@ -3,6 +3,7 @@ package com.solvd.persistence.mybatis;
 import com.solvd.model.deal.Payment;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.deal.PaymentRepository;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;
@@ -12,6 +13,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class PaymentRepositoryImpl implements PaymentRepository {
+
+    private static final Class<PaymentRepository> REPOSITORY_CLASS = PaymentRepository.class;
+
     @Override
     public void create(Payment payment) {
         Connection connection = ConnectionPool.get();

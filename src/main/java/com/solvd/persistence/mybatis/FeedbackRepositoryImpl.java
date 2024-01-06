@@ -3,6 +3,7 @@ package com.solvd.persistence.mybatis;
 import com.solvd.model.deal.Feedback;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.deal.FeedbackRepository;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 
 import java.sql.Connection;
@@ -12,6 +13,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class FeedbackRepositoryImpl implements FeedbackRepository {
+
+    private static final Class<FeedbackRepository> REPOSITORY_CLASS = FeedbackRepository.class;
+
     @Override
     public void create(Feedback feedback) {
         Connection connection = ConnectionPool.get();

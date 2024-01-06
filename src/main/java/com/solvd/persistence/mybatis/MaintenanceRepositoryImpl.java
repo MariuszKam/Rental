@@ -2,6 +2,7 @@ package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 import com.solvd.persistence.vehicle.maintenance.MaintenanceRepository;
 
@@ -12,6 +13,8 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class MaintenanceRepositoryImpl implements MaintenanceRepository {
+
+    private static final Class<MaintenanceRepository> REPOSITORY_CLASS = MaintenanceRepository.class;
 
     @Override
     public void create(Maintenance maintenance) {

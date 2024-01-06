@@ -36,7 +36,7 @@ public class VehicleTypeServiceImpl implements VehicleTypeService {
 
     @Override
     public boolean exists(VehicleType vehicleType) {
-        return vehicleTypeRepository.existsById(vehicleType.getId());
+        return vehicleTypeRepository.existsByName(vehicleType.getTypeName());
     }
 
     @Override

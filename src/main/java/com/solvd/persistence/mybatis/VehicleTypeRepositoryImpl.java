@@ -33,8 +33,8 @@ public class VehicleTypeRepositoryImpl implements VehicleTypeRepository {
     }
 
     @Override
-    public boolean existsById(Long id) {
-        return RepositoryUtility.executeBooleanSQL(REPOSITORY_CLASS, vehicleTypeRepository -> vehicleTypeRepository.existsById(id));
+    public boolean existsByName(String name) {
+        return RepositoryUtility.executeBooleanSQL(REPOSITORY_CLASS, vehicleTypeRepository -> vehicleTypeRepository.existsByName(name));
     }
 
     @Override

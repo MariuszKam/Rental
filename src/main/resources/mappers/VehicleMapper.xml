@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.vehicle.VehicleRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO vehicle (Vehicle_Type_id, Model, Registration_Number, Current_Kilometers, Available)
+        VALUES (#{vehicleType.id}, #{model}, #{registrationNumber}, #{currentKilometers}, #{available})
+    </insert>
+
+    <select id="findById" resultMap="VehicleResultMap">
+        SELECT * FROM vehicle WHERE id = #{id}
+    </select>
+
+    <select id="findByRelatedTableId" resultMap="VehicleResultMap">
+        SELECT * FROM vehicle WHERE id IN (SELECT Vehicle_id FROM ${table} WHERE id = #{id})
+    </select>
+
+    <select id="loadAll" resultMap="VehicleResultMap">
+        SELECT * FROM vehicle
+    </select>
+
+    <select id="findAllByRentalDealId" resultMap="VehicleResultMap">
+        SELECT v.*
+        FROM vehicle v
+        JOIN rental_deal_has_vehicle rv ON v.id = rv.Vehicle_id
+        WHERE rv.Rental_Deal_id = #{rentalDealId}
+    </select>
+
+    <update id="updateAvailableById">
+        UPDATE rental.vehicle
+        SET Available = #{available}
+        WHERE id = #{id}
+    </update>
+
+    <resultMap id="VehicleResultMap" type="com.solvd.model.vehicle.Vehicle" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="model" column="Model"/>
+        <result property="registrationNumber" column="Registration_Number"/>
+        <result property="currentKilometers" column="Current_Kilometers"/>
+        <result property="available" column="Available"/>
+        <association property="vehicleType"
+                     resultMap="com.solvd.persistence.vehicle.VehicleTypeRepository.VehicleTypeResultMap"/>
+    </resultMap>
+</mapper>

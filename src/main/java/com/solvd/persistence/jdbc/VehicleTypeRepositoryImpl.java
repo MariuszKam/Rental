@@ -99,12 +99,12 @@ public class VehicleTypeRepositoryImpl implements VehicleTypeRepository {
     }
 
     @Override
-    public boolean existsById(Long id) {
+    public boolean existsByName(String name) {
         Connection connection = ConnectionPool.get();
         try (PreparedStatement preparedStatement = connection.prepareStatement(
-                "SELECT 1 FROM rental.vehicle_type WHERE id = ?"
+                "SELECT 1 FROM rental.vehicle_type WHERE Type_Name = ?"
         )) {
-            preparedStatement.setLong(1, id);
+            preparedStatement.setString(1, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 return resultSet.next();
             }

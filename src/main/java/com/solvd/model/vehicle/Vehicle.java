@@ -19,6 +19,11 @@ public class Vehicle {
         this.available = available;
     }
 
+    public Vehicle() {
+        this.model = "";
+        this.registrationNumber = "";
+    }
+
     public Long getId() {
         return id;
     }

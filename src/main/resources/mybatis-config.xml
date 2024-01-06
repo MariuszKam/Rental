@@ -24,8 +24,8 @@
         <!--
         <mapper resource="mappers/InsuranceCompanyMapper.xml"/>
         <mapper resource="mappers/InsuranceMapper.xml"/>
-        <mapper resource="mappers/VehicleMapper.xml"/>
         -->
+        <mapper resource="mappers/VehicleMapper.xml"/>
         <mapper resource="mappers/VehicleTypeMapper.xml"/>
     </mappers>
 </configuration>

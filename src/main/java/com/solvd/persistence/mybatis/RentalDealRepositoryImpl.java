@@ -4,6 +4,7 @@ import com.solvd.model.deal.RentalDeal;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.connection.ConnectionPool;
 import com.solvd.persistence.deal.RentalDealRepository;
+import com.solvd.persistence.persons.employee.ContractRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class RentalDealRepositoryImpl implements RentalDealRepository {
+
+    private static final Class<RentalDealRepository> REPOSITORY_CLASS = RentalDealRepository.class;
 
     @Override
     public void create(RentalDeal rentalDeal) {

@@ -2,6 +2,7 @@ package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 import com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepository;
 
@@ -12,6 +13,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class InsuranceCompanyRepositoryImpl implements InsuranceCompanyRepository {
+
+    private static final Class<InsuranceCompanyRepository> REPOSITORY_CLASS = InsuranceCompanyRepository.class;
+
     @Override
     public void create(InsuranceCompany insuranceCompany) {
         Connection connection = ConnectionPool.get();

@@ -2,6 +2,7 @@ package com.solvd.persistence.mybatis;
 
 import com.solvd.model.vehicle.maintenance.DamageReport;
 import com.solvd.persistence.connection.ConnectionPool;
+import com.solvd.persistence.persons.employee.ContractRepository;
 import com.solvd.persistence.utilities.RepositoryUtility;
 import com.solvd.persistence.vehicle.maintenance.DamageReportRepository;
 
@@ -12,6 +13,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class DamageReportRepositoryImpl implements DamageReportRepository {
+
+    private static final Class<DamageReportRepository> REPOSITORY_CLASS = DamageReportRepository.class;
+
     @Override
     public void create(DamageReport damageReport) {
         Connection connection = ConnectionPool.get();

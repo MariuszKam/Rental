@@ -22,11 +22,11 @@
     </select>
 
     <select id="existsById" resultType="boolean">
-        SELECT 1 FROM vehicle_type WHERE id = #{id}
+        SELECT 1 FROM rental.vehicle_type WHERE Type_Name = = #{typeName}
     </select>
 
     <delete id="deleteByName">
-        DELETE FROM vehicle_type WHERE Type_Name = #{name}
+        DELETE FROM vehicle_type WHERE Type_Name = #{typeName}
     </delete>
 
     <resultMap id="VehicleTypeResultMap" type="com.solvd.model.vehicle.VehicleType" autoMapping="false">
