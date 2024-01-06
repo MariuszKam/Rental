@@ -19,5 +19,7 @@
 
     <mappers>
         <mapper resource="mappers/CustomerMapper.xml"/>
+        <mapper resource="mappers/ContractMapper.xml"/>
+        <mapper resource="mappers/EmployeeMapper.xml"/>
     </mappers>
 </configuration>

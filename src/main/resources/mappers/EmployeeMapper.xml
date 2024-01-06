@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.persons.employee.EmployeeRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO employee (First_Name, Last_Name, Position, Contract_id)
+        VALUES (#{firstName}, #{lastName}, #{position}, #{contract.id})
+    </insert>
+
+    <select id="findById" resultMap="EmployeeResultMap">
+        SELECT * FROM employee WHERE id = #{id}
+    </select>
+
+    <select id="findByRentalDealId" resultMap="EmployeeResultMap">
+        SELECT * FROM employee
+        WHERE id IN (SELECT Employee_id FROM rental_deal WHERE id = #{id})
+    </select>
+
+    <resultMap id="EmployeeResultMap" type="com.solvd.model.persons.employee.Employee" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="firstName" column="First_Name"/>
+        <result property="lastName" column="Last_Name"/>
+        <result property="position" column="Position"/>
+        <association property="contract"
+                     resultMap="com.solvd.persistence.persons.employee.ContractRepository.ContractResultMap"/>
+    </resultMap>
+</mapper>

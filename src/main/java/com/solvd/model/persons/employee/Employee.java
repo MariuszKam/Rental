@@ -14,6 +14,10 @@ public class Employee extends Person {
         this.contract = contract;
     }
 
+    public Employee() {
+        super();
+    }
+
     public String getPosition() {
         return position;
     }

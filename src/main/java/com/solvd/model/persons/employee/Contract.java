@@ -17,6 +17,9 @@ public class Contract {
         this.salary = salary;
     }
 
+    public Contract() {
+    }
+
     public long getId() {
         return id;
     }
