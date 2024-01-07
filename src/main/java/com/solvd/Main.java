@@ -1,6 +1,7 @@
 package com.solvd;
 
 
+import com.solvd.databasefeeder.DatabaseFeeder;
 import com.solvd.model.deal.RentalDeal;
 import com.solvd.model.deal.Status;
 import com.solvd.model.persons.customer.Customer;
@@ -31,6 +32,8 @@ public class Main {
     public static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        //Get some data into DataBase
+        DatabaseFeeder.feedDataBase();
         //Start of app logic
         //GetAllVehicleTypes
         VehicleTypeService vehicleTypeService = new VehicleTypeServiceImpl();
