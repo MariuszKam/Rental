@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.deal.RentalDealRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO rental_deal (Customer_id, Start_Rental, End_Rental, Total_Cost, Employee_id, Status_id)
+        VALUES (#{customer.id}, #{startRental}, #{endRental}, #{totalCost}, #{employee.id}, #{status.id})
+    </insert>
+
+    <insert id="createRentalHasVehicle" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+
+        INSERT INTO rental_deal_has_vehicle (Rental_Deal_id, Vehicle_id)
+        VALUES
+        <foreach collection="vehicles" item="vehicle" separator=",">
+            (#{id}, #{vehicle.id})
+        </foreach>
+    </insert>
+
+    <select id="findById" resultMap="RentalDealResultMap">
+        SELECT * FROM rental.rental_deal WHERE id = #{id}
+    </select>
+
+    <select id="findByRelatedTableId" resultMap="RentalDealResultMap">
+        SELECT * FROM rental_deal WHERE id IN (SELECT Rental_Deal_id FROM rental.${table} WHERE id = #{id})
+    </select>
+
+    <resultMap id="RentalDealResultMap" type="com.solvd.model.deal.RentalDeal" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="startRental" column="Start_Rental"/>
+        <result property="endRental" column="End_Rental"/>
+        <result property="totalCost" column="Total_Cost"/>
+        <association property="customer"
+                     resultMap="com.solvd.persistence.persons.customer.CustomerRepository.CustomerResultMap"/>
+        <association property="employee"
+                     resultMap="com.solvd.persistence.persons.employee.EmployeeRepository.EmployeeResultMap"/>
+        <association property="status"
+                     resultMap="com.solvd.persistence.deal.StatusRepository.StatusResultMap"/>
+        <collection property="vehicles"
+                    resultMap="com.solvd.persistence.vehicle.VehicleRepository.VehicleResultMap"/>
+    </resultMap>
+</mapper>

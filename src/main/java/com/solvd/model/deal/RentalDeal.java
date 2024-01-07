@@ -30,6 +30,12 @@ public class RentalDeal {
         this.vehicles = vehicles;
     }
 
+    public RentalDeal() {
+        this.startRental = null;
+        this.endRental = null;
+        this.totalCost = null;
+    }
+
     public Long getId() {
         return id;
     }

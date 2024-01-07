@@ -28,7 +28,7 @@
     </select>
 
     <update id="updateAvailableById">
-        UPDATE rental.vehicle
+        UPDATE vehicle
         SET Available = #{available}
         WHERE id = #{id}
     </update>

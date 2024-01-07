@@ -11,6 +11,10 @@ public class Status {
         this.status = status;
     }
 
+    public Status() {
+        this.status = "";
+    }
+
     public Long getId() {
         return id;
     }

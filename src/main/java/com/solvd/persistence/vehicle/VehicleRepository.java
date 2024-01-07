@@ -18,6 +18,6 @@ public interface VehicleRepository extends Repositorable<Vehicle> {
 
     List<Vehicle> findAllByRentalDealId(Long id);
 
-    void updateAvailableById(Long id, boolean available);
+    void updateAvailableById(@Param("id") Long id, @Param("available") boolean available);
 
 }
