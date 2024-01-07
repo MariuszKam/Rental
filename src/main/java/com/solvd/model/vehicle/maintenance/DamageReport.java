@@ -21,6 +21,11 @@ public class DamageReport {
         this.rentalDeal = rentalDeal;
     }
 
+    public DamageReport() {
+        this.reportDate = null;
+        this.description = "";
+    }
+
     public Long getId() {
         return id;
     }

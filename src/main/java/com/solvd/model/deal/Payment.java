@@ -19,6 +19,12 @@ public class Payment {
         this.rentalDeal = rentalDeal;
     }
 
+    public Payment() {
+        this.amount = null;
+        this.paymentDate = null;
+        this.paymentMethod = null;
+    }
+
     public Long getId() {
         return id;
     }

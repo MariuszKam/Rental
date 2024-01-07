@@ -9,7 +9,7 @@
     </insert>
 
     <select id="findById" resultMap="PaymentResultMap">
-        SELECT * FROM rental.payment WHERE id = #{id}
+        SELECT * FROM payment WHERE id = #{id}
     </select>
 
     <resultMap id="PaymentResultMap" type="com.solvd.model.deal.Payment" autoMapping="false">
