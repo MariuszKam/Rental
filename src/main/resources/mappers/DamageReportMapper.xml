@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.vehicle.maintenance.DamageReportRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO damage_report (report_date, description, Vehicle_id, Rental_Deal_id)
+        VALUES (#{reportDate}, #{description}, #{vehicle.id}, #{rentalDeal.id})
+    </insert>
+
+    <select id="findById" resultMap="DamageReportResultMap">
+        SELECT * FROM rental.damage_report WHERE id = #{id}
+    </select>
+
+    <resultMap id="DamageReportResultMap" type="com.solvd.model.vehicle.maintenance.DamageReport" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="reportDate" column="report_date"/>
+        <result property="description" column="description"/>
+        <association property="vehicle" resultMap="com.solvd.persistence.vehicle.VehicleRepository.VehicleResultMap"/>
+        <association property="rentalDeal"
+                     resultMap="com.solvd.persistence.deal.RentalDealRepository.RentalDealResultMap"/>
+    </resultMap>
+</mapper>

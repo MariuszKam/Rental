@@ -29,5 +29,7 @@
         <mapper resource="mappers/StatusMapper.xml"/>
         <mapper resource="mappers/RentalDealMapper.xml"/>
         <mapper resource="mappers/FeedbackMapper.xml"/>
+        <mapper resource="mappers/DamageReportMapper.xml"/>
+        <mapper resource="mappers/PaymentMapper.xml"/>
     </mappers>
 </configuration>

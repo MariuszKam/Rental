@@ -3,7 +3,7 @@ package com.solvd.service.vehicle.maintenance;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.DamageReport;
 import com.solvd.persistence.vehicle.maintenance.DamageReportRepository;
-import com.solvd.persistence.jdbc.DamageReportRepositoryImpl;
+import com.solvd.persistence.mybatis.DamageReportRepositoryImpl;
 import com.solvd.service.deal.RentalDealService;
 import com.solvd.service.deal.RentalDealServiceImpl;
 import com.solvd.service.vehicle.VehicleService;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.deal.PaymentRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO rental.payment (amount, payment_date, payment_method, Rental_Deal_id)
+        VALUES (#{amount}, #{paymentDate}, #{paymentMethod}, #{rentalDeal.id})
+    </insert>
+
+    <select id="findById" resultMap="PaymentResultMap">
+        SELECT * FROM rental.payment WHERE id = #{id}
+    </select>
+
+    <resultMap id="PaymentResultMap" type="com.solvd.model.deal.Payment" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="amount" column="amount"/>
+        <result property="paymentDate" column="payment_date"/>
+        <result property="paymentMethod" column="payment_method"/>
+        <association property="rentalDeal"
+                     resultMap="com.solvd.persistence.deal.RentalDealRepository.RentalDealResultMap"/>
+    </resultMap>
+</mapper>
