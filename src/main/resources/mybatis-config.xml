@@ -28,5 +28,6 @@
         <mapper resource="mappers/VehicleTypeMapper.xml"/>
         <mapper resource="mappers/StatusMapper.xml"/>
         <mapper resource="mappers/RentalDealMapper.xml"/>
+        <mapper resource="mappers/FeedbackMapper.xml"/>
     </mappers>
 </configuration>

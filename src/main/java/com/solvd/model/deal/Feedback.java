@@ -19,6 +19,11 @@ public class Feedback {
         this.customer = customer;
     }
 
+    public Feedback() {
+        this.rate = 0;
+        this.description = "";
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.persistence.deal.FeedbackRepository">
+
+    <insert id="create" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+        INSERT INTO feedback (rate, description, Rental_Deal_id, Customer_id)
+        VALUES (#{rate}, #{description}, #{rentalDeal.id}, #{customer.id})
+    </insert>
+
+    <select id="findById" resultMap="FeedbackResultMap">
+        SELECT * FROM rental.feedback WHERE id = #{id}
+    </select>
+
+    <resultMap id="FeedbackResultMap" type="com.solvd.model.deal.Feedback" autoMapping="false">
+        <id property="id" column="id"/>
+        <result property="rate" column="rate"/>
+        <result property="description" column="description"/>
+        <association property="rentalDeal"
+                     resultMap="com.solvd.persistence.deal.RentalDealRepository.RentalDealResultMap"/>
+        <association property="customer"
+                     resultMap="com.solvd.persistence.persons.customer.CustomerRepository.CustomerResultMap"/>
+    </resultMap>
+</mapper>
