@@ -1,9 +1,10 @@
-package com.solvd.service.deal;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.deal.Status;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.persistence.deal.StatusRepository;
 import com.solvd.persistence.mybatis.StatusRepositoryImpl;
+import com.solvd.service.deal.StatusService;
 
 public class StatusServiceImpl implements StatusService {
     private final StatusRepository statusRepository = new StatusRepositoryImpl();

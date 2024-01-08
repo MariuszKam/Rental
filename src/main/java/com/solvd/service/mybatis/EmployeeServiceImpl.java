@@ -1,9 +1,11 @@
-package com.solvd.service.persons.employee;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.employee.Employee;
 import com.solvd.persistence.persons.employee.EmployeeRepository;
 import com.solvd.persistence.mybatis.EmployeeRepositoryImpl;
+import com.solvd.service.persons.employee.ContractService;
+import com.solvd.service.persons.employee.EmployeeService;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();

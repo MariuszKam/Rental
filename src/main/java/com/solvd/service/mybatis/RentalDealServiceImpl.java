@@ -1,15 +1,14 @@
-package com.solvd.service.deal;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.deal.RentalDeal;
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.persistence.deal.RentalDealRepository;
 import com.solvd.persistence.mybatis.RentalDealRepositoryImpl;
+import com.solvd.service.deal.RentalDealService;
+import com.solvd.service.deal.StatusService;
 import com.solvd.service.persons.customer.CustomerService;
-import com.solvd.service.persons.customer.CustomerServiceImpl;
 import com.solvd.service.persons.employee.EmployeeService;
-import com.solvd.service.persons.employee.EmployeeServiceImpl;
 import com.solvd.service.vehicle.VehicleService;
-import com.solvd.service.vehicle.VehicleServiceImpl;
 
 public class RentalDealServiceImpl implements RentalDealService {
     private final RentalDealRepository rentalDealRepository = new RentalDealRepositoryImpl();

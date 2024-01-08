@@ -1,13 +1,12 @@
-package com.solvd.service.vehicle.maintenance;
+package com.solvd.service.jdbc;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.DamageReport;
+import com.solvd.persistence.jdbc.DamageReportRepositoryImpl;
 import com.solvd.persistence.vehicle.maintenance.DamageReportRepository;
-import com.solvd.persistence.mybatis.DamageReportRepositoryImpl;
 import com.solvd.service.deal.RentalDealService;
-import com.solvd.service.deal.RentalDealServiceImpl;
 import com.solvd.service.vehicle.VehicleService;
-import com.solvd.service.vehicle.VehicleServiceImpl;
+import com.solvd.service.vehicle.maintenance.DamageReportService;
 
 public class DamageReportServiceImpl implements DamageReportService {
     private final DamageReportRepository damageReportRepository = new DamageReportRepositoryImpl();

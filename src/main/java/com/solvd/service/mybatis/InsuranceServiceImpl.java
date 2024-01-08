@@ -1,10 +1,11 @@
-package com.solvd.service.vehicle.maintenance;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.vehicle.maintenance.Insurance;
 import com.solvd.persistence.vehicle.maintenance.InsuranceRepository;
 import com.solvd.persistence.mybatis.InsuranceRepositoryImpl;
 import com.solvd.service.vehicle.VehicleService;
-import com.solvd.service.vehicle.VehicleServiceImpl;
+import com.solvd.service.vehicle.maintenance.InsuranceCompanyService;
+import com.solvd.service.vehicle.maintenance.InsuranceService;
 
 public class InsuranceServiceImpl implements InsuranceService {
     private final InsuranceRepository insuranceRepository = new InsuranceRepositoryImpl();

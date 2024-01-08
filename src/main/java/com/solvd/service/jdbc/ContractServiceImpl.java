@@ -1,9 +1,10 @@
-package com.solvd.service.persons.employee;
+package com.solvd.service.jdbc;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.persons.employee.Contract;
+import com.solvd.persistence.jdbc.ContractRepositoryImpl;
 import com.solvd.persistence.persons.employee.ContractRepository;
-import com.solvd.persistence.mybatis.ContractRepositoryImpl;
+import com.solvd.service.persons.employee.ContractService;
 
 public class ContractServiceImpl implements ContractService {
     private final ContractRepository contractRepository = new ContractRepositoryImpl();

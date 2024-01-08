@@ -1,11 +1,12 @@
-package com.solvd.service.vehicle.maintenance;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.Maintenance;
 import com.solvd.persistence.vehicle.maintenance.MaintenanceRepository;
 import com.solvd.persistence.mybatis.MaintenanceRepositoryImpl;
 import com.solvd.service.vehicle.VehicleService;
-import com.solvd.service.vehicle.VehicleServiceImpl;
+import com.solvd.service.mybatis.VehicleServiceImpl;
+import com.solvd.service.vehicle.maintenance.MaintenanceService;
 
 public class MaintenanceServiceImpl implements MaintenanceService {
     private final MaintenanceRepository maintenanceRepository = new MaintenanceRepositoryImpl();

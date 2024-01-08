@@ -1,9 +1,11 @@
-package com.solvd.service.vehicle;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.Vehicle;
 import com.solvd.persistence.vehicle.VehicleRepository;
 import com.solvd.persistence.mybatis.VehicleRepositoryImpl;
+import com.solvd.service.vehicle.VehicleService;
+import com.solvd.service.vehicle.VehicleTypeService;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,9 +1,10 @@
-package com.solvd.service.vehicle.maintenance;
+package com.solvd.service.mybatis;
 
 import com.solvd.model.exception.ItemNotFoundException;
 import com.solvd.model.vehicle.maintenance.InsuranceCompany;
 import com.solvd.persistence.vehicle.maintenance.InsuranceCompanyRepository;
 import com.solvd.persistence.mybatis.InsuranceCompanyRepositoryImpl;
+import com.solvd.service.vehicle.maintenance.InsuranceCompanyService;
 
 public class InsuranceCompanyServiceImpl implements InsuranceCompanyService {
     InsuranceCompanyRepository insuranceCompanyRepository = new InsuranceCompanyRepositoryImpl();
