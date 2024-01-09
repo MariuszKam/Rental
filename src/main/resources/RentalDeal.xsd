@@ -1,0 +1,77 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="RentalDeal">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="customer" type="CustomerType"/>
+                <xs:element name="startRental" type="xs:dateTime"/>
+                <xs:element name="endRental" type="xs:dateTime"/>
+                <xs:element name="totalCost" type="xs:decimal"/>
+                <xs:element name="employee" type="EmployeeType"/>
+                <xs:element name="status" type="StatusType"/>
+                <xs:element name="vehicles" type="VehicleListType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="CustomerType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="phoneNumber" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="address" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EmployeeType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="position" type="xs:string"/>
+            <xs:element name="contract" type="ContractType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContractType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="startDate" type="xs:dateTime"/>
+            <xs:element name="endDate" type="xs:dateTime"/>
+            <xs:element name="amount" type="xs:decimal"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StatusType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="status" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VehicleType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="vehicleType" type="VehicleTypeType"/>
+            <xs:element name="model" type="xs:string"/>
+            <xs:element name="registrationNumber" type="xs:string"/>
+            <xs:element name="currentKilometers" type="xs:long"/>
+            <xs:element name="available" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VehicleTypeType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VehicleListType">
+        <xs:sequence>
+            <xs:element name="vehicle" type="VehicleType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,78 @@
+<RentalDeal xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:noNamespaceSchemaLocation="RentalDeal.xsd">
+    <id>1</id>
+    <customer>
+        <id>1</id>
+        <firstName>Darek</firstName>
+        <lastName>Dark</lastName>
+        <phoneNumber>586-856-456</phoneNumber>
+        <email>d.dark@gmail.com</email>
+        <address>Main st 34</address>
+    </customer>
+    <startRental>2024-01-09T12:00:00</startRental>
+    <endRental>2024-01-10T12:00:00</endRental>
+    <totalCost>100.00</totalCost>
+    <employee>
+        <id>1</id>
+        <firstName>Sam</firstName>
+        <lastName>Wrecked</lastName>
+        <position>Seller</position>
+        <contract>
+            <id>1</id>
+            <startDate>2023-02-23T00:00:00</startDate>
+            <endDate>2026-02-24T00:00:00</endDate>
+            <amount>2450.90</amount>
+        </contract>
+    </employee>
+    <status>
+        <id>1</id>
+        <status>Pending</status>
+    </status>
+    <vehicles>
+        <vehicle>
+            <id>1</id>
+            <vehicleType>
+                <id>1</id>
+                <name>Sedan</name>
+            </vehicleType>
+            <model>Audi A3</model>
+            <registrationNumber>ZS82564</registrationNumber>
+            <currentKilometers>134003</currentKilometers>
+            <available>true</available>
+        </vehicle>
+        <vehicle>
+            <id>2</id>
+            <vehicleType>
+                <id>1</id>
+                <name>Sedan</name>
+            </vehicleType>
+            <model>Volkswagen Passat B6</model>
+            <registrationNumber>ZS56197</registrationNumber>
+            <currentKilometers>156879</currentKilometers>
+            <available>true</available>
+        </vehicle>
+        <!-- Pickup -->
+        <vehicle>
+            <id>3</id>
+            <vehicleType>
+                <id>2</id>
+                <name>Pickup</name>
+            </vehicleType>
+            <model>Ford Ranger</model>
+            <registrationNumber>ZS43715</registrationNumber>
+            <currentKilometers>4173659</currentKilometers>
+            <available>true</available>
+        </vehicle>
+        <vehicle>
+            <id>4</id>
+            <vehicleType>
+                <id>2</id>
+                <name>Pickup</name>
+            </vehicleType>
+            <model>Volkswagen Amarok</model>
+            <registrationNumber>ZS71485</registrationNumber>
+            <currentKilometers>84578925</currentKilometers>
+            <available>true</available>
+        </vehicle>
+    </vehicles>
+</RentalDeal>
