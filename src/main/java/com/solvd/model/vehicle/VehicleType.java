@@ -1,9 +1,16 @@
 package com.solvd.model.vehicle;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class VehicleType {
+    @XmlElement
     private Long id;
+    @XmlElement
     private final String typeName;
 
     public VehicleType(Long id, String typeName) {

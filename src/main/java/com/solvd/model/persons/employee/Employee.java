@@ -1,11 +1,17 @@
 package com.solvd.model.persons.employee;
 
 import com.solvd.model.persons.Person;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Employee extends Person {
+    @XmlElement
     private String position;
+
     private Contract contract;
 
     public Employee(Long id, String firstName, String lastName, String position, Contract contract) {

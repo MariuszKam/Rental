@@ -1,11 +1,19 @@
 package com.solvd.model.persons;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
+
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class Person {
-
+    @XmlElement
     protected Long id;
+    @XmlElement
     protected String firstName;
+    @XmlElement
     protected String lastName;
 
     public Person(long id, String firstName, String lastName) {

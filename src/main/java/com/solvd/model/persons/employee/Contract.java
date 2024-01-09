@@ -1,13 +1,24 @@
 package com.solvd.model.persons.employee;
 
+import com.solvd.jaxb.LocalDateTimeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Contract {
+    @XmlElement
     private Long id;
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime startContract;
+    @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
     private LocalDateTime endContract;
+    @XmlElement
     private BigDecimal salary;
 
     public Contract(Long id, LocalDateTime startContract, LocalDateTime endContract, BigDecimal salary) {
