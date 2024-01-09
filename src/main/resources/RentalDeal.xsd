@@ -38,9 +38,9 @@
     <xs:complexType name="ContractType">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
-            <xs:element name="startDate" type="xs:dateTime"/>
-            <xs:element name="endDate" type="xs:dateTime"/>
-            <xs:element name="amount" type="xs:decimal"/>
+            <xs:element name="startContract" type="xs:dateTime"/>
+            <xs:element name="endContract" type="xs:dateTime"/>
+            <xs:element name="salary" type="xs:decimal"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -65,7 +65,7 @@
     <xs:complexType name="VehicleTypeType">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
-            <xs:element name="name" type="xs:string"/>
+            <xs:element name="typeName" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
 

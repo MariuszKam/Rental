@@ -19,9 +19,9 @@
         <position>Seller</position>
         <contract>
             <id>1</id>
-            <startDate>2023-02-23T00:00:00</startDate>
-            <endDate>2026-02-24T00:00:00</endDate>
-            <amount>2450.90</amount>
+            <startContract>2023-02-23T00:00:00</startContract>
+            <endContract>2026-02-24T00:00:00</endContract>
+            <salary>2450.90</salary>
         </contract>
     </employee>
     <status>
@@ -33,7 +33,7 @@
             <id>1</id>
             <vehicleType>
                 <id>1</id>
-                <name>Sedan</name>
+                <typeName>Sedan</typeName>
             </vehicleType>
             <model>Audi A3</model>
             <registrationNumber>ZS82564</registrationNumber>
@@ -44,19 +44,18 @@
             <id>2</id>
             <vehicleType>
                 <id>1</id>
-                <name>Sedan</name>
+                <typeName>Sedan</typeName>
             </vehicleType>
             <model>Volkswagen Passat B6</model>
             <registrationNumber>ZS56197</registrationNumber>
             <currentKilometers>156879</currentKilometers>
             <available>true</available>
         </vehicle>
-        <!-- Pickup -->
         <vehicle>
             <id>3</id>
             <vehicleType>
                 <id>2</id>
-                <name>Pickup</name>
+                <typeName>Pickup</typeName>
             </vehicleType>
             <model>Ford Ranger</model>
             <registrationNumber>ZS43715</registrationNumber>
@@ -67,7 +66,7 @@
             <id>4</id>
             <vehicleType>
                 <id>2</id>
-                <name>Pickup</name>
+                <typeName>Pickup</typeName>
             </vehicleType>
             <model>Volkswagen Amarok</model>
             <registrationNumber>ZS71485</registrationNumber>
