@@ -14,6 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <log4jversion>2.21.1</log4jversion>
         <jaxbversion>4.0.4</jaxbversion>
+        <jacksonversion>2.16.1</jacksonversion>
     </properties>
 
     <dependencies>
@@ -52,6 +53,16 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <version>${jaxbversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jacksonversion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jacksonversion}</version>
         </dependency>
     </dependencies>
 

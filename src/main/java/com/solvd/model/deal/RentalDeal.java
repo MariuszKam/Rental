@@ -1,5 +1,11 @@
 package com.solvd.model.deal;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.solvd.jackson.LocalDateTimeDeserializer;
+import com.solvd.jackson.LocalDateTimeSerializer;
 import com.solvd.jaxb.LocalDateTimeAdapter;
 import com.solvd.model.persons.customer.Customer;
 import com.solvd.model.persons.employee.Employee;
@@ -15,12 +21,17 @@ import java.util.Objects;
 @XmlRootElement(name = "RentalDeal")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RentalDeal {
+
     @XmlElement
     private Long id;
     private Customer customer;
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private final LocalDateTime startRental;
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private final LocalDateTime endRental;
     private final BigDecimal totalCost;
     private Employee employee;

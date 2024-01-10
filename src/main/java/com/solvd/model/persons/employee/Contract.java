@@ -1,5 +1,9 @@
 package com.solvd.model.persons.employee;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.solvd.jackson.LocalDateTimeDeserializer;
+import com.solvd.jackson.LocalDateTimeSerializer;
 import com.solvd.jaxb.LocalDateTimeAdapter;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -15,8 +19,12 @@ public class Contract {
     @XmlElement
     private Long id;
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime startContract;
     @XmlJavaTypeAdapter(LocalDateTimeAdapter.class)
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime endContract;
     @XmlElement
     private BigDecimal salary;

@@ -1,0 +1,76 @@
+{
+  "id": 1,
+  "customer": {
+    "id": 1,
+    "firstName": "Darek",
+    "lastName": "Dark",
+    "phoneNumber": "586-856-456",
+    "email": "d.dark@gmail.com",
+    "address": "Main st 34"
+  },
+  "startRental": "2024-01-09T12:00:00",
+  "endRental": "2024-01-10T12:00:00",
+  "totalCost": 100.00,
+  "employee": {
+    "id": 1,
+    "firstName": "Sam",
+    "lastName": "Wrecked",
+    "position": "Seller",
+    "contract": {
+      "id": 1,
+      "startContract": "2023-02-23T00:00:00",
+      "endContract": "2026-02-24T00:00:00",
+      "salary": 2450.90
+    }
+  },
+  "status": {
+    "id": 1,
+    "status": "Pending"
+  },
+  "vehicles": [
+    {
+      "id": 1,
+      "vehicleType": {
+        "id": 1,
+        "typeName": "Sedan"
+      },
+      "model": "Audi A3",
+      "registrationNumber": "ZS82564",
+      "currentKilometers": 134003,
+      "available": true
+    },
+    {
+      "id": 2,
+      "vehicleType": {
+        "id": 1,
+        "typeName": "Sedan"
+      },
+      "model": "Volkswagen Passat B6",
+      "registrationNumber": "ZS56197",
+      "currentKilometers": 156879,
+      "available": true
+    },
+    {
+      "id": 3,
+      "vehicleType": {
+        "id": 2,
+        "typeName": "Pickup"
+      },
+      "model": "Ford Ranger",
+      "registrationNumber": "ZS43715",
+      "currentKilometers": 4173659,
+      "available": true
+    },
+    {
+      "id": 4,
+      "vehicleType": {
+        "id": 2,
+        "typeName": "Pickup"
+      },
+      "model": "Volkswagen Amarok",
+      "registrationNumber": "ZS71485",
+      "currentKilometers": 84578925,
+      "available": true
+    }
+  ]
+}
