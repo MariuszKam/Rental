@@ -11,24 +11,16 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.IOException;
 
-import static com.solvd.Main.logger;
 
 public class XMLValidator {
-    public static void main(String[] args) {
-        try {
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Source schemaFile = new StreamSource("src/main/resources/RentalDeal.xsd");
-            Schema schema = schemaFactory.newSchema(schemaFile);
-            Validator validator = schema.newValidator();
-            logger.info(isValid(validator));
-        } catch (Exception e) {
-            logger.warn(e);
-        }
-    }
 
-    private static boolean isValid(Validator validator) throws IOException {
+    public static boolean isValid(String xmlPath, String xsdPath) throws IOException, SAXException {
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+        Source schemaFile = new StreamSource(xsdPath);
+        Schema schema = schemaFactory.newSchema(schemaFile);
+        Validator validator = schema.newValidator();
         try {
-            validator.validate(new StreamSource("src/main/resources/RentalDeal.xml"));
+            validator.validate(new StreamSource(xmlPath));
             return true;
         } catch (SAXException e) {
             return false;
