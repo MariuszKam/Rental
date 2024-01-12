@@ -22,23 +22,19 @@ import static com.solvd.Main.logger;
 public class XMLValidator {
     public static void main(String[] args) {
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse("src/main/resources/RentalDeal.xml");
-
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
             Source schemaFile = new StreamSource("src/main/resources/RentalDeal.xsd");
             Schema schema = schemaFactory.newSchema(schemaFile);
             Validator validator = schema.newValidator();
-            logger.info(isValid(validator, document));
+            logger.info(isValid(validator));
         } catch (Exception e) {
             logger.warn(e);
         }
     }
 
-    private static boolean isValid(Validator validator, Document document) throws IOException {
+    private static boolean isValid(Validator validator) throws IOException {
         try {
-            validator.validate(new DOMSource(document));
+            validator.validate(new StreamSource("src/main/resources/RentalDeal.xml"));
             return true;
         } catch (SAXException e) {
             return false;
