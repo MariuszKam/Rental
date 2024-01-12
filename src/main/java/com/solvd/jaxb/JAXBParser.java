@@ -7,6 +7,8 @@ import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
+import static com.solvd.Main.logger;
+
 public class JAXBParser {
 
     public static void main(String[] args) {
@@ -19,6 +21,6 @@ public class JAXBParser {
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(rentalDeal);
+        logger.info(rentalDeal);
     }
 }
