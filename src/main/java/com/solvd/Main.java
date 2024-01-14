@@ -72,5 +72,19 @@ public class Main {
         //Now vehicles are not available anymore
         vehicleService.showAvailableByVehicleType("Pickup");
 
+        //Builder
+        RentalDeal rentalDealBuilder = new RentalDeal.Builder()
+                .id(null)
+                .customer(customer)
+                .startRental(LocalDateTime.of(2023, 2, 23, 0, 0))
+                .endRental(LocalDateTime.of(2023, 2, 25, 0, 0))
+                .totalCost(new BigDecimal("300.50"))
+                .employee(employee)
+                .status(status)
+                .vehicles(List.of(vehicleOne, vehicleTwo))
+                .build();
+
+        logger.info(rentalDealBuilder);
+
     }
 }

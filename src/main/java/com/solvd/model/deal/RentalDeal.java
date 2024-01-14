@@ -1,7 +1,5 @@
 package com.solvd.model.deal;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.solvd.jackson.LocalDateTimeDeserializer;
@@ -134,5 +132,72 @@ public class RentalDeal {
                 ", status=" + status +
                 ", vehicles=" + vehicles +
                 '}';
+    }
+
+    //Bulider desing
+    private RentalDeal(Builder builder) {
+        this.id = builder.id;
+        this.customer = builder.customer;
+        this.startRental = builder.startRental;
+        this.endRental = builder.endRental;
+        this.totalCost = builder.totalCost;
+        this.employee = builder.employee;
+        this.status = builder.status;
+        this.vehicles = builder.vehicles;
+    }
+
+    public static class Builder {
+        private Long id;
+        private Customer customer;
+        private LocalDateTime startRental;
+        private LocalDateTime endRental;
+        private BigDecimal totalCost;
+        private Employee employee;
+        private Status status;
+        private List<Vehicle> vehicles;
+
+        public Builder id(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder customer(Customer customer) {
+            this.customer = customer;
+            return this;
+        }
+
+        public Builder startRental(LocalDateTime startRental) {
+            this.startRental = startRental;
+            return this;
+        }
+
+        public Builder endRental(LocalDateTime endRental) {
+            this.endRental = endRental;
+            return this;
+        }
+
+        public Builder totalCost(BigDecimal totalCost) {
+            this.totalCost = totalCost;
+            return this;
+        }
+
+        public Builder employee(Employee employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder status(Status status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder vehicles(List<Vehicle> vehicles) {
+            this.vehicles = vehicles;
+            return this;
+        }
+
+        public RentalDeal build() {
+            return new RentalDeal(this);
+        }
     }
 }
