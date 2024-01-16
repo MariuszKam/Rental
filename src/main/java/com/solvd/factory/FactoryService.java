@@ -16,65 +16,69 @@ import com.solvd.service.vehicle.maintenance.MaintenanceService;
 
 public class FactoryService {
 
-    public static ContractService createContractService(String type) {
-        return createService(type, ContractService.class);
+    public static ContractService createContractService() {
+        return createService(ContractService.class);
     }
 
-    public static CustomerService createCustomerService(String type) {
-        return createService(type, CustomerService.class);
+    public static CustomerService createCustomerService() {
+        return createService(CustomerService.class);
     }
 
-    public static DamageReportService createDamageReportService(String type) {
-        return createService(type, DamageReportService.class);
+    public static DamageReportService createDamageReportService() {
+        return createService(DamageReportService.class);
     }
 
-    public static EmployeeService createEmployeeService(String type) {
-        return createService(type, EmployeeService.class);
+    public static EmployeeService createEmployeeService() {
+        return createService(EmployeeService.class);
     }
 
-    public static FeedbackService createFeedbackService(String type) {
-        return createService(type, FeedbackService.class);
+    public static FeedbackService createFeedbackService() {
+        return createService(FeedbackService.class);
     }
 
-    public static InsuranceCompanyService createInsuranceCompanyService(String type) {
-        return createService(type, InsuranceCompanyService.class);
+    public static InsuranceCompanyService createInsuranceCompanyService() {
+        return createService(InsuranceCompanyService.class);
     }
 
-    public static InsuranceService createInsuranceService(String type) {
-        return createService(type, InsuranceService.class);
+    public static InsuranceService createInsuranceService() {
+        return createService(InsuranceService.class);
     }
 
-    public static MaintenanceService createMaintenanceService(String type) {
-        return createService(type, MaintenanceService.class);
+    public static MaintenanceService createMaintenanceService() {
+        return createService(MaintenanceService.class);
     }
 
-    public static PaymentService createPaymentService(String type) {
-        return createService(type, PaymentService.class);
+    public static PaymentService createPaymentService() {
+        return createService(PaymentService.class);
     }
 
-    public static RentalDealService createRentalDealService(String type) {
-        return createService(type, RentalDealService.class);
+    public static RentalDealService createRentalDealService() {
+        return createService(RentalDealService.class);
     }
 
-    public static StatusService createStatusService(String type) {
-        return createService(type, StatusService.class);
+    public static StatusService createStatusService() {
+        return createService(StatusService.class);
     }
 
-    public static VehicleService createVehicleService(String type) {
-        return createService(type, VehicleService.class);
+    public static VehicleService createVehicleService() {
+        return createService(VehicleService.class);
     }
 
-    public static VehicleTypeService createVehicleTypeService(String type) {
-        return createService(type, VehicleTypeService.class);
+    public static VehicleTypeService createVehicleTypeService() {
+        return createService(VehicleTypeService.class);
     }
 
-    private static <T> T createService(String type, Class<T> serviceInterface) {
+    private static <T> T createService(Class<T> serviceInterface) {
         try {
+            String type = System.getProperty("implementation");
+            if (type == null) {
+                throw new RuntimeException("System property 'implementation' not set.");
+            }
             String className = "com.solvd.service." + type + "." + serviceInterface.getSimpleName() + "Impl";
             Class<?> serviceClass = Class.forName(className);
             return serviceInterface.cast(serviceClass.getDeclaredConstructor().newInstance());
         } catch (Exception e) {
-            throw new RuntimeException(String.format("Unable to create object related to the %s type", type), e);
+            throw new RuntimeException("Unable to create object", e);
         }
     }
 }
